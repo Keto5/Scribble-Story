@@ -181,26 +181,109 @@ label start:
 
 
     label stew:
-    n "stew"
     #two chars eat a normal stew and then game restarts
+    n "An ordinary stew. Something perfectly average. Lukewarm and tasty, but nothing amazing."
+    n "The two friends ate their average stew together and felt at peace. Their life may not be the most thrilling, but at least they were content."
+    n " Everything worked out the way it was meant to."
+    return
+ 
     label pasta:
     #characters eat the pasta, some crazy shit happens idk maybe thats what makes them turn purple or maybe they can spin or something, go to next scene
-    n "pasta"
+    n "An extraordinary pasta... Of course. Because why not. This pasta is unlike any other.{w} It's {i}special pasta{/i}. {w}It even has sparkles."
+    n "What makes this pasta so special? Why, I don't know.{w} I truly do not know.{w} [NAME1], the brave fellow he is, decides to stuff the entire plate into his mouth."
+    c2"”Do you feel any different?”"
+    n"[NAME2] asked."
+    c1"”I think... I think I do.”"
+    c1"”I feel more... free...”"
+    #he spins
+    c1"”I guess I can do this now. Huh.”"
+    #he moves around and shit
+    c2"”Hey man can you stop? You're kind of freaking me out. I'm getting dizzy just watching.”"
+    #keep spinnin
+    c1"”Yeah sure sorry.”"
+    #stop spinning and moving
+    jump fight
+
     label terrible:
     #narrator covers screen with the text box, everyone is disgusted, go to next scene
-    n "terrible"
+    #raises the dialogue box
+    n "EUGH, THAT'S DISGUSTING! I CAN'T EVEN SHOW THAT!"
+    n "Are you being serious? This benefits NO ONE.{W} Not a SINGLE SOUL.{W} NO ONE WANTS THIS."
+    jump fight
+    
+
+
+ 
 
 
     label fight:
-    #narrator does not trust you, gets angry at you
+    n "..."
+    n "I would continue the story but I'm not sure I can trust you."
+    n "Who are you in this for? Be honest with me. I just can't wrap my head around it."
+
+    menu: 
+        "My audience":
+        #increase narrator score
+        n "I hope you mean that."
+        "My Creations":
+        #increase characters score
+        n "Your creations that did not exist 10 minutes ago.{w} Of course.{w} Why would you consider anyone else."
+        "Myself":
+        n "... Okay."
+        #increase player score
+    n "Unfortunately I, as the narrator, have reached the conclusion that you are not fit for this role."
+    n "This story will be terminated immediately."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "This story is over."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "It is done."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    menu: 
+            "Stop":
+        
+    #if player score is highest
+    #say line abt that
+    #if character score
+    #say line abt that
+
     #fills up a bunnnch of lines of nothing
     #player stops this with a choice box, choosing one last option
     #narrator takes choices away, divert into the two (three if you choose one of each) other endings from here
 
-    label ending2:
+    label ending2: 
+    #player score
     #narrator controls the story for a bit more, but is unable to choose what else will happen to them so they just leave and go to a bar
+    
     label ending3:
+    #player score
     #narrator and characters work together to force out the player
+    
     label ending4:
     #if chose equal amounts of character narrator and player choices, everyone agrees they are a mess and just need to restart.
     return
