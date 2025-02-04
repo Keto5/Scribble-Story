@@ -68,7 +68,7 @@ label start:
 #[NAME1] and [NAME2] are placeholders, eventually they need to be replaced with variables 
 #based on the character the player chooses
 
-    n "Our story begins with [NAME1] and [NAME2]"
+    n "Our story begins with [NAME1] and [NAME2]."
     n "[NAME1] and [NAME2] are very good friends.{w} Best friends to be exact."
     n "They live together in..."
  
@@ -119,17 +119,20 @@ label start:
 
     label artistcharinteract:
     #music stops
-    n "placeholder where characters will ask for something"
-    
-    # c2 "Hey… Sorry to interrupt."
-    # c2 "You can draw us anything for dinner, right?"
-    # menu:
-    #         "Yes":
-    #             n "placeholdertext"
+    c2 "Hey… Sorry to interrupt."
+    c2 "You can draw us anything for dinner, right?"
+    menu:
+            "Yes":
+                c1 "What about a food that makes us fly?{w} Or gives us a million dollars?{w} Can it really be anything?"
+    menu:
+            "I don't see why not.":
+                c2 "Can you make us something really delicious?{w} Mouthwatering beyond human comprehension?"
+    c1 "Something that makes our taste buds explode?!"
     #character asks for something not sure what yet
     jump narratorwarning
 
     label narratorwarning:
+    #shake transition again
     n "Hold on now.{w} May I speak with you, artist? {w}{i}Alone{i}?"
     #switch background? remove characters, 
     n "That's better."
@@ -165,6 +168,39 @@ label start:
     n"Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
     
     label dinnerchoice:
-    #need to ask group about dinner options :)
+    menu: 
+        "an ordinary stew":
+        #increase narrator score
+            jump stew
+        "an {i}extraordinary{/i} pasta":
+        #increase characters score
+            jump pasta
+        "something terrible":
+            jump terrible
+        #increase player score
 
+
+    label stew:
+    n "stew"
+    #two chars eat a normal stew and then game restarts
+    label pasta:
+    #characters eat the pasta, some crazy shit happens idk maybe thats what makes them turn purple or maybe they can spin or something, go to next scene
+    n "pasta"
+    label terrible:
+    #narrator covers screen with the text box, everyone is disgusted, go to next scene
+    n "terrible"
+
+
+    label fight:
+    #narrator does not trust you, gets angry at you
+    #fills up a bunnnch of lines of nothing
+    #player stops this with a choice box, choosing one last option
+    #narrator takes choices away, divert into the two (three if you choose one of each) other endings from here
+
+    label ending2:
+    #narrator controls the story for a bit more, but is unable to choose what else will happen to them so they just leave and go to a bar
+    label ending3:
+    #narrator and characters work together to force out the player
+    label ending4:
+    #if chose equal amounts of character narrator and player choices, everyone agrees they are a mess and just need to restart.
     return
