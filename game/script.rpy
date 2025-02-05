@@ -7,7 +7,7 @@ define n = Character("Narrator")
 define c1 = Character("NAME1", dynamic=True)
 define c2 = Character("NAME2", dynamic=True)
 default NAME1 = "Circle"
-default NAME2 = "Guy2"
+default NAME2 = "Square"
 default narratorScore = 0
 default playerScore = 0
 default characterScore = 0
@@ -21,7 +21,29 @@ layeredimage character1:
         "Circle_Happy.png"
     if NAME1 == "Circle" and expression == "sad":
         "Circle_Sad.png"
+    if NAME1 == "Circle" and expression == "angry":
+        "Circle_Angry.png"
+    if NAME1 == "Circle" and expression == "confused":
+        "Circle_Confused.png"
+    if NAME1 == "Circle" and expression == "bored":
+        "Circle_Bored.png"
+    if NAME1 == "Circle" and expression == "shocked":
+        "Circle_Shocked.png"
 
+layeredimage character2:
+
+    if NAME1 == "Square" and expression == "happy":
+        "Square_Happy.png"
+    if NAME1 == "Square" and expression == "sad":
+        "Square_Sad.png"
+    if NAME1 == "Square" and expression == "angry":
+        "Square_Angry.png"
+    if NAME1 == "Square" and expression == "confused":
+        "Square_Confused.png"
+    if NAME1 == "Square" and expression == "bored":
+        "Square_Bored.png"
+    if NAME1 == "Square" and expression == "shocked":
+        "Square_Shocked.png"
 label start:
     show character1
     n "This is you.{w} You are an artist."
@@ -34,6 +56,7 @@ label start:
     menu drawchar1:
         "Make something ugly":
             #characters want
+            $ characterScore+=1
             n "Oh. I guess that works. Not really what I was picturing."
             #character likes how they look
             c1 "Hello Creator. It is nice to meet you."
