@@ -6,17 +6,23 @@
 define n = Character("Narrator")
 define c1 = Character("NAME1", dynamic=True)
 define c2 = Character("NAME2", dynamic=True)
-default NAME1 = "Guy"
+default NAME1 = "Circle"
 default NAME2 = "Guy2"
 default narratorScore = 0
 default playerScore = 0
 default characterScore = 0
-
+image chappy = "Circle_Happy.png"
 # The game starts here.
+layeredimage character1:
+    always:
+        if NAME1 == "Circle":
+            "chappy"
+        else:
+            "stick.png"
 
 
 label start:
-
+    show character1
     n "This is you.{w} You are an artist."
     #show artist sprite with pencil
     n "As an artist, you have the ability many only dream of:{w} creation."
@@ -223,7 +229,7 @@ label start:
     #raises the dialogue box
     n "EUGH, THAT'S DISGUSTING! I CAN'T EVEN SHOW THAT!"
     n "Are you being serious? This benefits NO ONE.{w} Not a SINGLE SOUL.{w} NO ONE WANTS THIS."
-    n 
+   
     jump fight
     
 

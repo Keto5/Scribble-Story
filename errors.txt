@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 221: choice menuitem expects a non-empty block.
-    "My audience":
-                  ^
-
-File "game/script.rpy", line 264: choice menuitem expects a non-empty block.
-    "Stop":
-           ^
+File "game/script.rpy", line 18: end of line expected.
+    if NAME1 == "Circle":
+    ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Wed Feb  5 10:03:04 2025
+Wed Feb  5 13:58:50 2025
