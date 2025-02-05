@@ -1,42 +1,42 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 24, in script
+  File "game/script.rpy", line 28, in script
     show character1
   File "renpy/common/00layeredimage.rpy", line 699, in _duplicate
     d = i.get_displayable(attributes)
   File "renpy/common/00layeredimage.rpy", line 428, in get_displayable
     return ConditionSwitch(*args, predict_all=predict_all)
-SyntaxError: invalid syntax (game/script.rpy, line 17)
+SyntaxError: invalid syntax (game/script.rpy, line 22)
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 24, in script
+  File "game/script.rpy", line 28, in script
     show character1
-  File "C:\Users\13473\Downloads\renpy-8.3.4-sdk\renpy-8.3.4-sdk\renpy\ast.py", line 1117, in execute
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\ast.py", line 1117, in execute
     show_imspec(self.imspec, atl=getattr(self, "atl", None))
-  File "C:\Users\13473\Downloads\renpy-8.3.4-sdk\renpy-8.3.4-sdk\renpy\ast.py", line 1080, in show_imspec
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\ast.py", line 1080, in show_imspec
     renpy.config.show(name,
-  File "C:\Users\13473\Downloads\renpy-8.3.4-sdk\renpy-8.3.4-sdk\renpy\exports\displayexports.py", line 477, in show
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\exports\displayexports.py", line 477, in show
     if not base.find_target() and renpy.config.missing_show:
-  File "C:\Users\13473\Downloads\renpy-8.3.4-sdk\renpy-8.3.4-sdk\renpy\display\image.py", line 421, in find_target
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\display\image.py", line 421, in find_target
     self.target = target._duplicate(a)
   File "renpy/common/00layeredimage.rpy", line 699, in _duplicate
     d = i.get_displayable(attributes)
   File "renpy/common/00layeredimage.rpy", line 428, in get_displayable
     return ConditionSwitch(*args, predict_all=predict_all)
-  File "C:\Users\13473\Downloads\renpy-8.3.4-sdk\renpy-8.3.4-sdk\renpy\display\layout.py", line 1779, in ConditionSwitch
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\display\layout.py", line 1779, in ConditionSwitch
     code = renpy.python.py_compile(cond, 'eval')
-  File "C:\Users\13473\Downloads\renpy-8.3.4-sdk\renpy-8.3.4-sdk\renpy\python.py", line 1144, in py_compile
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1144, in py_compile
     raise e
-  File "C:\Users\13473\Downloads\renpy-8.3.4-sdk\renpy-8.3.4-sdk\renpy\python.py", line 1081, in py_compile
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1081, in py_compile
     raise orig_e
-  File "C:\Users\13473\Downloads\renpy-8.3.4-sdk\renpy-8.3.4-sdk\renpy\python.py", line 1073, in py_compile
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1073, in py_compile
     tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, 1)
-SyntaxError: invalid syntax (game/script.rpy, line 17)
+SyntaxError: invalid syntax (game/script.rpy, line 22)
 
-Windows-10-10.0.22631 AMD64
+Windows-10-10.0.26100 AMD64
 Ren'Py 8.3.4.24120703
 Scribble Story 1.0
-Wed Feb  5 13:54:57 2025
+Wed Feb  5 14:28:11 2025

@@ -12,14 +12,15 @@ default narratorScore = 0
 default playerScore = 0
 default characterScore = 0
 image chappy = "Circle_Happy.png"
+default isCircle = "true"
+default expression = "happy"
 # The game starts here.
 layeredimage character1:
-    always:
-        if NAME1 == "Circle":
-            "chappy"
-        else:
-            "stick.png"
 
+    if NAME1 == "Circle" and expression == "happy":
+        "Circle_Happy.png"
+    if NAME1 == "Circle" and expression == "sad":
+        "Circle_Sad.png"
 
 label start:
     show character1
