@@ -2,13 +2,13 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 125: choice menuitem expects a non-empty block.
-    "Yes":
-          ^
+File "game/script.rpy", line 221: choice menuitem expects a non-empty block.
+    "My audience":
+                  ^
 
-File "game/script.rpy", line 128: choice menuitem expects a non-empty block.
-    "I don't see why not.":
-                           ^
+File "game/script.rpy", line 264: choice menuitem expects a non-empty block.
+    "Stop":
+           ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Mon Feb  3 20:25:28 2025
+Wed Feb  5 10:03:04 2025

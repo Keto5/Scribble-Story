@@ -189,18 +189,23 @@ label start:
  
     label pasta:
     #characters eat the pasta, some crazy shit happens idk maybe thats what makes them turn purple or maybe they can spin or something, go to next scene
-    n "An extraordinary pasta... Of course. Because why not. This pasta is unlike any other.{w} It's {i}special pasta{/i}. {w}It even has sparkles."
-    n "What makes this pasta so special? Why, I don't know.{w} I truly do not know.{w} [NAME1], the brave fellow he is, decides to stuff the entire plate into his mouth."
-    c2"”Do you feel any different?”"
-    n"[NAME2] asked."
+    n "An EXTRAORDINARY PASTA... OF COURSE. Because why not. This pasta is unlike any other.{w} It's {i}special pasta{/i}. {w}It even has sparkles."
+    n "What makes this pasta so special? Why, I don't know.{w} I truly do not know.{w}{b}MAYBE WE SHOULD ASK THE ARTIST.{/b}"
+    n "Before we can do that, [NAME1], the brave fellow he is, decides to stuff the entire plate into his mouth."
+    c2 "”Do you feel any different?”"
+    n "[NAME2] asked."
     c1"”I think... I think I do.”"
     c1"”I feel more... free...”"
     #he spins
     c1"”I guess I can do this now. Huh.”"
+    n "STOP THIS.{w} IMMEDIATELY."
     #he moves around and shit
+    n "This makes no SENSE! There is no REASON behind these decisions!"
+    #he keeps moving around
     c2"”Hey man can you stop? You're kind of freaking me out. I'm getting dizzy just watching.”"
     #keep spinnin
     c1"”Yeah sure sorry.”"
+    n "This is completely unacceptable behavior."
     #stop spinning and moving
     jump fight
 
@@ -208,30 +213,29 @@ label start:
     #narrator covers screen with the text box, everyone is disgusted, go to next scene
     #raises the dialogue box
     n "EUGH, THAT'S DISGUSTING! I CAN'T EVEN SHOW THAT!"
-    n "Are you being serious? This benefits NO ONE.{W} Not a SINGLE SOUL.{W} NO ONE WANTS THIS."
+    n "Are you being serious? This benefits NO ONE.{w} Not a SINGLE SOUL.{w} NO ONE WANTS THIS."
+    n 
     jump fight
     
 
-
- 
-
-
     label fight:
-    n "..."
     n "I would continue the story but I'm not sure I can trust you."
     n "Who are you in this for? Be honest with me. I just can't wrap my head around it."
 
     menu: 
         "My audience":
         #increase narrator score
-        n "I hope you mean that."
+            n "I hope you mean that."
+
         "My Creations":
         #increase characters score
-        n "Your creations that did not exist 10 minutes ago.{w} Of course.{w} Why would you consider anyone else."
+            n "Your creations that did not exist 10 minutes ago.{w} Of course.{w} Why would you consider anyone else."
         "Myself":
-        n "... Okay."
+            n "... Okay."
         #increase player score
-    n "Unfortunately I, as the narrator, have reached the conclusion that you are not fit for this role."
+
+    n "Unfortunately I have reached the conclusion that you are not fit for this role."
+    n "A new artist will replace you."
     n "This story will be terminated immediately."
     n "..."
     n "..."
@@ -264,20 +268,72 @@ label start:
     n "..."
     n "..."
     n "..."
-    menu: 
-            "Stop":
-        
+    n "The story has been terminated."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
     #if player score is highest
     #say line abt that
     #if character score
     #say line abt that
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    menu: 
+            "Stop":
+                n "Please don't make this more difficult than it has to be."
+    
+    n "Please don't make this more difficult than it has to be."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    menu: 
+            "...Do over?":
+                n "I am growing more and more annoyed by you at every moment."
+    n "You cannot disrupt the balance of this world and simply ask for a ”Do Over”."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    menu: 
+            "Please?":
+                n "No."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    menu: 
+            "Pretty please?":
+                n "No.{w} I didn't want to do this but you have forced my hand."
+    #demolition noises
+    #get rid of the pencil
+    n "Well, that settles that."
+    n "Where were we?"
 
+    #IF STATEMENT TO DO ENDINGS
     #fills up a bunnnch of lines of nothing
     #player stops this with a choice box, choosing one last option
     #narrator takes choices away, divert into the two (three if you choose one of each) other endings from here
 
     label ending2: 
-    #player score
+    #char score
     #narrator controls the story for a bit more, but is unable to choose what else will happen to them so they just leave and go to a bar
     
     label ending3:
@@ -285,5 +341,6 @@ label start:
     #narrator and characters work together to force out the player
     
     label ending4:
+        #narratorscore
     #if chose equal amounts of character narrator and player choices, everyone agrees they are a mess and just need to restart.
     return
