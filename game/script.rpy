@@ -8,12 +8,15 @@ define c1 = Character("NAME1", dynamic=True)
 define c2 = Character("NAME2", dynamic=True)
 default NAME1 = "Circle"
 default NAME2 = "Square"
+default NAME3 = "Squareman"
+default NAME4 = "Stickman"
 default narratorScore = 0
 default playerScore = 0
 default characterScore = 0
 image chappy = "Circle_Happy.png"
 default isCircle = "true"
 default expression = "happy"
+default setting = ""
 # The game starts here.
 layeredimage character1:
 
@@ -32,18 +35,49 @@ layeredimage character1:
 
 layeredimage character2:
 
-    if NAME1 == "Square" and expression == "happy":
+    if NAME2 == "Square" and expression == "happy":
         "Square_Happy.png"
-    if NAME1 == "Square" and expression == "sad":
+    if NAME2 == "Square" and expression == "sad":
         "Square_Sad.png"
-    if NAME1 == "Square" and expression == "angry":
+    if NAME2 == "Square" and expression == "angry":
         "Square_Angry.png"
-    if NAME1 == "Square" and expression == "confused":
+    if NAME2 == "Square" and expression == "confused":
         "Square_Confused.png"
-    if NAME1 == "Square" and expression == "bored":
+    if NAME2 == "Square" and expression == "bored":
         "Square_Bored.png"
-    if NAME1 == "Square" and expression == "shocked":
+    if NAME2 == "Square" and expression == "shocked":
         "Square_Shocked.png"
+
+layeredimage character3:
+
+    if NAME3 == "Squareman" and expression == "happy":
+        "Squareman_Happy.png"
+    if NAME3 == "Squareman" and expression == "sad":
+        "Squareman_Sad.png"
+    if NAME3 == "Squareman" and expression == "angry":
+        "Squareman_Angry.png"
+    if NAME3 == "Squareman" and expression == "confused":
+        "Squareman_Confused.png"
+    if NAME3 == "Squareman" and expression == "bored":
+        "Squareman_Bored.png"
+    if NAME3 == "Squareman" and expression == "shocked":
+        "Squareman_Shocked.png"
+
+
+layeredimage character4:
+
+    if NAME4 == "stickman" and expression == "happy":
+        "Stickman_Happy.png"
+    if NAME4 == "stickman" and expression == "sad":
+        "Stickman_Sad.png"
+    if NAME4 == "stickman" and expression == "angry":
+        "Stickman_Angry.png"
+    if NAME4 == "stickman" and expression == "confused":
+        "Squareman_Confused.png"
+    if NAME4 == "stickman" and expression == "bored":
+        "Stickman_Bored.png"
+    if NAME4 == "stickman" and expression == "shocked":
+        "Squareman_Shocked.png"
 label start:
     show character1
     n "This is you.{w} You are an artist."
@@ -62,10 +96,12 @@ label start:
             c1 "Hello Creator. It is nice to meet you."
         "Make something simple":
             #narrator wants
+            $ narratorScore+=1
             n "Adorable! What a wonderful use of your powers. I applaud you, I do."
             c1 "Hi."
         "Make something geometric":
             # players want
+            $ playerScore+=1
             n "...That's...{w} the best you could come up with? I give you the power to create anything and you give me a circle?"
             c1 "Kind of lame."
 
@@ -76,12 +112,15 @@ label start:
     menu drawchar2:
         "colorful":
             #narrator wants
+            $ narratorScore+=1
             n "placeholder"
         "geometric":
             #players wants
+            $ playerScore+=1
             n "placeholder"
         "confusing":
             #character wants
+            $ characterScore+=1
             n "placeholder"
 
     label music:
@@ -115,12 +154,18 @@ label start:
     menu:
         "a humble apartment":
             #increase narrator score
+            $ setting = "apt"
+            $ narratorScore+=1
             jump apartment
         "a wet cardboard box":
             #increase player score
+            $ setting = "cbox"
+            $ playerScore+=1
             jump cardboardbox
         "a lavish mansion":
             #increase characters score
+            $ setting = "charamansion"
+            $ characterScore+=1
             jump mansion
 
     label apartment:
@@ -180,11 +225,14 @@ label start:
     n "Often times, what is best for them may not be what they desire. It may not be what {i}you{/i} desire."
     n "You must think of your audience. Keep things reasonable and current."
     #if chose apartment (NEEDS LOGIC)
-    n "The people want a story they can relate to. A heartwarming tale of two friends celebrating their accomplishments with a grand meal!"
+        if setting == "apt":       
+            n "The people want a story they can relate to. A heartwarming tale of two friends celebrating their accomplishments with a grand meal!"
     #if chose mansion (NEEDS LOGIC)
-    n "The people want a story they can relate to. Not one about snobby rich characters who are handed anything they want! We need {b}CONFLICT!{/b}"
+        if setting == "cbox":
+            n "The people want a story they can relate to. Not one about snobby rich characters who are handed anything they want! We need {b}CONFLICT!{/b}"
     #if chose wet cardboard box (NEEDS LOGIC)
-    n "The people want a story they can relate to. Not one where the author subjects characters to strange situations for their own enjoyment!"
+        if setting == "charamansion":
+            n "The people want a story they can relate to. Not one where the author subjects characters to strange situations for their own enjoyment!"
     n "Heed this warning. The story depends on it."
     jump contchoice2
 
@@ -195,28 +243,34 @@ label start:
 
     #if chose apartment (NEEDS LOGIC)
     #put back background  
-    n "[NAME2] pulled the lid off his pot to reveal..."
+        if setting == "apt":
+            n "[NAME2] pulled the lid off his pot to reveal..."
     #choices
 
     #if chose mansion (NEEDS LOGIC)
     #put back background  
-    n "Walking into the kitchen, [NAME1] and [NAME2] saw their chef's dish on the plate..."
+        if setting == "cbox":
+            n "Walking into the kitchen, [NAME1] and [NAME2] saw their chef's dish on the plate..."
 
     #if chose wet cardboard box (NEEDS LOGIC)
     #put back background
-    n"Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
+        if setting == "charamansion":
+            n"Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
     
     label dinnerchoice:
     menu: 
         "an ordinary stew":
         #increase narrator score
+        $ narratorScore+=1
             jump stew
         "an {i}extraordinary{/i} pasta":
         #increase characters score
+        $ characterScore+=1
             jump pasta
         "something terrible":
             jump terrible
         #increase player score
+        $ playerScore+=1
 
 
     label stew:
@@ -264,14 +318,17 @@ label start:
     menu: 
         "My audience":
         #increase narrator score
+        $ narratorScore+=1
             n "I hope you mean that."
 
         "My Creations":
         #increase characters score
+        $ characterScore+=1
             n "Your creations that did not exist 10 minutes ago.{w} Of course.{w} Why would you consider anyone else."
         "Myself":
             n "... Okay."
         #increase player score
+        $ playerScore+=1
 
     n "Unfortunately I have reached the conclusion that you are not fit for this role."
     n "A new artist will replace you."
