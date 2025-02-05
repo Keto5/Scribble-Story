@@ -8,6 +8,9 @@ define c1 = Character("NAME1", dynamic=True)
 define c2 = Character("NAME2", dynamic=True)
 default NAME1 = "Guy"
 default NAME2 = "Guy2"
+default narratorScore = 0
+default playerScore = 0
+default characterScore = 0
 
 # The game starts here.
 
@@ -20,15 +23,19 @@ label start:
     #hide artist sprite
     n "Go on now artist, {i}create!{/i}"
    
-#menus are just choices.
+
     menu drawchar1:
         "Make something ugly":
+            #characters want
             n "Oh. I guess that works. Not really what I was picturing."
+            #character likes how they look
             c1 "Hello Creator. It is nice to meet you."
-        "Make something cute":
+        "Make something simple":
+            #narrator wants
             n "Adorable! What a wonderful use of your powers. I applaud you, I do."
             c1 "Hi."
         "Make something geometric":
+            # players want
             n "...That's...{w} the best you could come up with? I give you the power to create anything and you give me a circle?"
             c1 "Kind of lame."
 
@@ -38,10 +45,13 @@ label start:
     
     menu drawchar2:
         "colorful":
+            #narrator wants
             n "placeholder"
         "geometric":
+            #players wants
             n "placeholder"
         "confusing":
+            #character wants
             n "placeholder"
 
     label music:
@@ -80,7 +90,7 @@ label start:
             #increase player score
             jump cardboardbox
         "a lavish mansion":
-            #increase characters view
+            #increase characters score
             jump mansion
 
     label apartment:
@@ -91,7 +101,7 @@ label start:
     n "He called out, ready to show off his masterpiece. Moments later, [NAME1] shuffled into the kitchen."
     c2 "”Ta-da!”"
     n "He exclaimed, pulling the lid off the pot to reveal…"
-#sound effect here idk or transition/shaking
+    #sound effect here idk or transition/shaking
     jump artistcharinteract
 
     label cardboardbox:
@@ -128,7 +138,6 @@ label start:
             "I don't see why not.":
                 c2 "Can you make us something really delicious?{w} Mouthwatering beyond human comprehension?"
     c1 "Something that makes our taste buds explode?!"
-    #character asks for something not sure what yet
     jump narratorwarning
 
     label narratorwarning:
