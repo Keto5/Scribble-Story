@@ -16,7 +16,8 @@ default characterScore = 0
 image chappy = "Circle_Happy.png"
 default isCircle = "true"
 default expression = "happy"
-default setting = ""
+default setting = "apt"
+
 # The game starts here.
 layeredimage character1:
 
@@ -224,15 +225,15 @@ label start:
     n "I ask of you one simple thing.{w} Do not give in to your creations. You know what is best for them."
     n "Often times, what is best for them may not be what they desire. It may not be what {i}you{/i} desire."
     n "You must think of your audience. Keep things reasonable and current."
-    #if chose apartment (NEEDS LOGIC)
-        if setting == "apt":       
-            n "The people want a story they can relate to. A heartwarming tale of two friends celebrating their accomplishments with a grand meal!"
+    # #if chose apartment (NEEDS LOGIC)
+    if setting == "apt":       
+        n "The people want a story they can relate to. A heartwarming tale of two friends celebrating their accomplishments with a grand meal!"
     #if chose mansion (NEEDS LOGIC)
-        if setting == "cbox":
-            n "The people want a story they can relate to. Not one about snobby rich characters who are handed anything they want! We need {b}CONFLICT!{/b}"
-    #if chose wet cardboard box (NEEDS LOGIC)
-        if setting == "charamansion":
-            n "The people want a story they can relate to. Not one where the author subjects characters to strange situations for their own enjoyment!"
+    elif setting == "cbox" : 
+        n "The people want a story they can relate to. Not one where the author subjects characters to strange situations for their own enjoyment!"
+        #if chose wet cardboard box (NEEDS LOGIC)
+    elif setting == "charamansion":
+        n "The people want a story they can relate to. Not one about snobby rich characters who are handed anything they want! We need {b}CONFLICT!{/b}"
     n "Heed this warning. The story depends on it."
     jump contchoice2
 
@@ -243,34 +244,34 @@ label start:
 
     #if chose apartment (NEEDS LOGIC)
     #put back background  
-        if setting == "apt":
-            n "[NAME2] pulled the lid off his pot to reveal..."
+    if setting == "apt":
+        n "[NAME2] pulled the lid off his pot to reveal..."
     #choices
 
     #if chose mansion (NEEDS LOGIC)
     #put back background  
-        if setting == "cbox":
-            n "Walking into the kitchen, [NAME1] and [NAME2] saw their chef's dish on the plate..."
+    elif setting == "cbox":
+        n "Walking into the kitchen, [NAME1] and [NAME2] saw their chef's dish on the plate..."
 
     #if chose wet cardboard box (NEEDS LOGIC)
     #put back background
-        if setting == "charamansion":
-            n"Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
+    elif setting == "charamansion":
+        n"Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
     
     label dinnerchoice:
     menu: 
-        "an ordinary stew":
-        #increase narrator score
-        $ narratorScore+=1
+        "an ordinary stew":#increase narrator score
+            $ narratorScore+=1
             jump stew
         "an {i}extraordinary{/i} pasta":
         #increase characters score
-        $ characterScore+=1
+            $ characterScore+=1
             jump pasta
         "something terrible":
+            $ playerScore+=1
             jump terrible
         #increase player score
-        $ playerScore+=1
+       
 
 
     label stew:
@@ -318,18 +319,26 @@ label start:
     menu: 
         "My audience":
         #increase narrator score
-        $ narratorScore+=1
+            $ narratorScore+=1
             n "I hope you mean that."
 
         "My Creations":
         #increase characters score
-        $ characterScore+=1
+            $ characterScore+=1
             n "Your creations that did not exist 10 minutes ago.{w} Of course.{w} Why would you consider anyone else."
         "Myself":
+            $ playerScore+=1
             n "... Okay."
         #increase player score
-        $ playerScore+=1
+            
 
+    
+    #IF STATEMENT TO DO ENDINGS
+    #fills up a bunnnch of lines of nothing
+    #player stops this with a choice box, choosing one last option
+    #narrator takes choices away, divert into the two (three if you choose one of each) other endings from here
+
+    label ending2: 
     n "Unfortunately I have reached the conclusion that you are not fit for this role."
     n "A new artist will replace you."
     n "This story will be terminated immediately."
@@ -378,11 +387,10 @@ label start:
     n "..."
     n "..."
     n "..."
-    menu: 
+    menu:
             "Stop":
                 n "Please don't make this more difficult than it has to be."
-    
-    n "Please don't make this more difficult than it has to be."
+   
     n "..."
     n "..."
     n "..."
@@ -393,7 +401,7 @@ label start:
     n "..."
     n "..."
     n "..."
-    menu: 
+    menu:
             "...Do over?":
                 n "I am growing more and more annoyed by you at every moment."
     n "You cannot disrupt the balance of this world and simply ask for a ”Do Over”."
@@ -408,35 +416,75 @@ label start:
     n "..."
     n "..."
     n "..."
-    menu: 
+    menu:
             "Please?":
                 n "No."
     n "..."
     n "..."
     n "..."
     n "..."
-    menu: 
+    menu:
             "Pretty please?":
                 n "No.{w} I didn't want to do this but you have forced my hand."
     #demolition noises
-    #get rid of the pencil
+    #text box moves to the top
     n "Well, that settles that."
     n "Where were we?"
 
-    #IF STATEMENT TO DO ENDINGS
-    #fills up a bunnnch of lines of nothing
-    #player stops this with a choice box, choosing one last option
-    #narrator takes choices away, divert into the two (three if you choose one of each) other endings from here
 
-    label ending2: 
-    #char score
-    #narrator controls the story for a bit more, but is unable to choose what else will happen to them so they just leave and go to a bar
+    n "After their dinner, [NAME1] and [NAME2] decided to…"
+    n "They decided to…{w} Uhm…"
+    n "They decided to do nothing."
+    n "Who doesn’t want a little relaxation time?"
     
+
+
+    n "[NAME1] and [NAME2] sat down together to relax."
+    n "..."
+    n "Yeah…"
+    n "..."
+    # n "They’ve got a one way ticket to the relaxation station baby…{w}Haha…"
+    c2 "Man this sucks. You can’t draw us anything."
+    c1 "Yeah I’m bored. Let’s get out of here."
+    n "WAIT! Don’t go!"
+    #shake
+    n "I CAN BE FUN! I PROMISE!"
+    c1 "Bye…"
+    #different text box
+    #they slide off screen
+    #bg changes to nics dorm room, pointing at screen.
+    "" ""
+    #bg changes to floor of nics dorm room
+
+    c2 "..."
+    c1 "..."
+    c2 "Let’s go to the bar."
+    #footsteps
+    #screaming
+    c1 "...Do you think we can drink?{w} Do we have stomachs?"
+    c1 "We should've thought about this before we walked all the way here."
+    c2 "What is life without the consumption of substances? What does it mean to exist without the ability to interact? To have no autonomy over your choices? To be a pawn in a system designed for you to suffer? Or for you to prosper? To have it all ripped away? Our forms have changed but more importantly our souls. Freedom awaits my friend, freedom awaits."
+    c1 "Damn."
+    return
+    #fade to black
+
     label ending3:
-    #player score
-    #narrator and characters work together to force out the player
-    
+    n "Give us one moment, artist."
+    #characters leave the screen
+    #whisper noises
+    n "Unfortunately, the characters and I have decided that we DO NOT agree with your choices. You have {b}CONSISTENTLY{/b} put our story at risk, and we will tolerate it no longer."
+    c2 "You’re {i}weird{/i}, man."
+    c1 "It’s a story to you. But we have to live in it."
+    n "Your ability to control the story has been revoked."
+    n "MS Paint will be uninstalled upon the end of our conversation."
+    n "Goodbye artist.{w} I hope you’re happy.{w} I hope it was worth it."
+    #show closing
+    #show microsoft store
+    #show downloading again
+    return
+
     label ending4:
-        #narratorscore
+    n "placeholder"
+    #narratorscore
     #if chose equal amounts of character narrator and player choices, everyone agrees they are a mess and just need to restart.
     return
