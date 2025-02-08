@@ -2,9 +2,13 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 320: choice menuitem expects a non-empty block.
-    "My audience":
-                  ^
+File "game/script.rpy", line 355: elif clause expects a non-empty block.
+    elif narratorScore >= playerScore and narratorScore >= characterScore:
+                                                                          ^
+
+File "game/script.rpy", line 359: expected statement.
+    elif setting == "charamansion":
+                 ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Fri Feb  7 13:51:33 2025
+Sat Feb  8 11:39:32 2025

@@ -8,14 +8,13 @@ define c1 = Character("NAME1", dynamic=True)
 define c2 = Character("NAME2", dynamic=True)
 default NAME1 = "Circle"
 default NAME2 = "Square"
-default NAME3 = "Squareman"
-default NAME4 = "Stickman"
 default narratorScore = 0
 default playerScore = 0
 default characterScore = 0
 image chappy = "Circle_Happy.png"
 default isCircle = "true"
 default expression = "happy"
+default expression2 = "happy"
 default setting = "apt"
 
 # The game starts here.
@@ -33,54 +32,50 @@ layeredimage character1:
         "Circle_Bored.png"
     if NAME1 == "Circle" and expression == "shocked":
         "Circle_Shocked.png"
-
+    if NAME1 == "Stickman" and expression == "happy":
+        "Stickman_Happy.png"
+    if NAME1 == "Stickman" and expression == "sad":
+        "Stickman_Sad.png"
+    if NAME1 == "Stickman" and expression == "angry":
+        "Stickman_Angry.png"
+    if NAME1 == "Stickman" and expression == "confused":
+        "Stickman_Confused.png"
+    if NAME1 == "Stickman" and expression == "bored":
+        "Stickman_Bored.png"
+    if NAME1 == "Stickman" and expression == "shocked":
+        "Stickman_Shocked.png"
 layeredimage character2:
 
-    if NAME2 == "Square" and expression == "happy":
+    if NAME2 == "Square" and expression2 == "happy":
         "Square_Happy.png"
-    if NAME2 == "Square" and expression == "sad":
+    if NAME2 == "Square" and expression2 == "sad":
         "Square_Sad.png"
-    if NAME2 == "Square" and expression == "angry":
+    if NAME2 == "Square" and expression2 == "angry":
         "Square_Angry.png"
-    if NAME2 == "Square" and expression == "confused":
+    if NAME2 == "Square" and expression2 == "confused":
         "Square_Confused.png"
-    if NAME2 == "Square" and expression == "bored":
+    if NAME2 == "Square" and expression2 == "bored":
         "Square_Bored.png"
-    if NAME2 == "Square" and expression == "shocked":
+    if NAME2 == "Square" and expression2 == "shocked":
         "Square_Shocked.png"
-
-layeredimage character3:
-
-    if NAME3 == "Squareman" and expression == "happy":
+    if NAME2 == "Squareman" and expression2 == "happy":
         "Squareman_Happy.png"
-    if NAME3 == "Squareman" and expression == "sad":
+    if NAME2 == "Squareman" and expression2 == "sad":
         "Squareman_Sad.png"
-    if NAME3 == "Squareman" and expression == "angry":
+    if NAME2 == "Squareman" and expression2 == "angry":
         "Squareman_Angry.png"
-    if NAME3 == "Squareman" and expression == "confused":
+    if NAME2 == "Squareman" and expression2 == "confused":
         "Squareman_Confused.png"
-    if NAME3 == "Squareman" and expression == "bored":
+    if NAME2 == "Squareman" and expression2 == "bored":
         "Squareman_Bored.png"
-    if NAME3 == "Squareman" and expression == "shocked":
+    if NAME2 == "Squareman" and expression2 == "shocked":
         "Squareman_Shocked.png"
 
 
-layeredimage character4:
 
-    if NAME4 == "stickman" and expression == "happy":
-        "Stickman_Happy.png"
-    if NAME4 == "stickman" and expression == "sad":
-        "Stickman_Sad.png"
-    if NAME4 == "stickman" and expression == "angry":
-        "Stickman_Angry.png"
-    if NAME4 == "stickman" and expression == "confused":
-        "Squareman_Confused.png"
-    if NAME4 == "stickman" and expression == "bored":
-        "Stickman_Bored.png"
-    if NAME4 == "stickman" and expression == "shocked":
-        "Squareman_Shocked.png"
+ 
 label start:
-    show character1
+
     n "This is you.{w} You are an artist."
     #show artist sprite with pencil
     n "As an artist, you have the ability many only dream of:{w} creation."
@@ -89,19 +84,22 @@ label start:
    
 
     menu drawchar1:
-        "Make something ugly":
+        "Make something strange":
             #characters want
+            $ NAME1 = "placeholder"
             $ characterScore+=1
-            n "Oh. I guess that works. Not really what I was picturing."
+            n "Oh. Not really what I was picturing. I don't enjoy the way it is staring at me."
             #character likes how they look
             c1 "Hello Creator. It is nice to meet you."
         "Make something simple":
             #narrator wants
+            $ NAME1 = "Stickman"
             $ narratorScore+=1
             n "Adorable! What a wonderful use of your powers. I applaud you, I do."
             c1 "Hi."
         "Make something geometric":
             # players want
+            $ NAME1 = "Circle"
             $ playerScore+=1
             n "...That's...{w} the best you could come up with? I give you the power to create anything and you give me a circle?"
             c1 "Kind of lame."
@@ -111,15 +109,18 @@ label start:
     n "Our next character will be..."
     
     menu drawchar2:
-        "colorful":
+        "human-like":
+            $ NAME2 = "Squareman"
             #narrator wants
             $ narratorScore+=1
-            n "placeholder"
+            n "What a unique design! This will do nicely."
         "geometric":
+            $ NAME2 = "Square"
             #players wants
             $ playerScore+=1
-            n "placeholder"
+            n "Oh... a little simple.{w} Are you sure you are an artist? I was expecting a bit more... {i}creativity...{/i}"
         "confusing":
+            $ NAME2 = "placeholder"
             #character wants
             $ characterScore+=1
             n "placeholder"
@@ -147,7 +148,10 @@ label start:
     label storystart:
 #[NAME1] and [NAME2] are placeholders, eventually they need to be replaced with variables 
 #based on the character the player chooses
-
+    $ expression = "bored"
+    show character1 at left
+    $ expression2 = "angry"
+    show character2 at right
     n "Our story begins with [NAME1] and [NAME2]."
     n "[NAME1] and [NAME2] are very good friends.{w} Best friends to be exact."
     n "They live together in..."
@@ -181,11 +185,13 @@ label start:
     jump artistcharinteract
 
     label cardboardbox:
-    n "...a wet cardboard box...{w} Of course.{w}"
+    n "...a wet cardboard box..."
+    n "A peculiar choice.{w} I am beginning to question your judgement, artist."
+    n "But I can try to work with this."
     n "In spite of what you may think, the box was quite cozy."
     n "When they moved in, [NAME1] taped up the outside of the box to prevent rain leaking through. [NAME2] bought a flashlight so they could see in the dark."
     n "Today is an important day for our two friends. For [NAME1] has brought home something special."
-    c1 "”[NAME2]! Look what I found for dinner in the garbage can!”"
+    c1 "”[NAME2]! Look what I found for dinner! Someone left it outside and it's not even soggy yet!”"
     n "He called out to his friend, stepping into their cardboard home."
     c2 "”What is it?”"
     n "[NAME2] asked. Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
@@ -194,6 +200,8 @@ label start:
 
     label mansion:
     n "A lavish mansion with six floors, an indoor pool, a personal chef, and a full golf course. The two friends had anything and everything they could ever need."
+    n "Are you sure this isn't {i}too much{/i}, Artist? {w} It's a little... extravagant."
+    n "I can try to make it work.{w} Just be careful for next time."
     n "It was late evening, and the friends were waiting for their dinner. It did not typically take this long for their chef to prepare a dish, so they could only assume this one must be special."
     n "After another 30 minutes of waiting, the chef alerted [NAME1] that dinner was prepared."
     "Personal Chef" "I apologize for the wait sir, we were testing out a new recipe. I do hope you enjoy."
@@ -205,7 +213,7 @@ label start:
 
     label artistcharinteract:
     #music stops
-    c2 "Hey… Sorry to interrupt."
+    c2 "Hey…"
     c2 "You can draw us anything for dinner, right?"
     menu:
             "Yes":
@@ -222,7 +230,7 @@ label start:
     #switch background? remove characters, 
     n "That's better."
     n "There comes a time in every artist's life where they must make choices. It is up to the individual to ensure they are making the {i}correct{/i} ones."      
-    n "I ask of you one simple thing.{w} Do not give in to your creations. You know what is best for them."
+    n "I ask of you one thing.{w} Do not give in to your creations. You know what is best for them."
     n "Often times, what is best for them may not be what they desire. It may not be what {i}you{/i} desire."
     n "You must think of your audience. Keep things reasonable and current."
     # #if chose apartment (NEEDS LOGIC)
@@ -234,7 +242,7 @@ label start:
         #if chose wet cardboard box (NEEDS LOGIC)
     elif setting == "charamansion":
         n "The people want a story they can relate to. Not one about snobby rich characters who are handed anything they want! We need {b}CONFLICT!{/b}"
-    n "Heed this warning. The story depends on it."
+    n "Choose carefully. The story depends on it."
     jump contchoice2
 
     label contchoice2:
@@ -278,28 +286,33 @@ label start:
     #two chars eat a normal stew and then game restarts
     n "An ordinary stew. Something perfectly average. Lukewarm and tasty, but nothing amazing."
     n "The two friends ate their average stew together and felt at peace. Their life may not be the most thrilling, but at least they were content."
-    n " Everything worked out the way it was meant to."
+    n "Everything worked out the way it was meant to."
     return
  
     label pasta:
     #characters eat the pasta, some crazy shit happens idk maybe thats what makes them turn purple or maybe they can spin or something, go to next scene
-    n "An EXTRAORDINARY PASTA... OF COURSE. Because why not. This pasta is unlike any other.{w} It's {i}special pasta{/i}. {w}It even has sparkles."
-    n "What makes this pasta so special? Why, I don't know.{w} I truly do not know.{w}{b}MAYBE WE SHOULD ASK THE ARTIST.{/b}"
-    n "Before we can do that, [NAME1], the brave fellow he is, decides to stuff the entire plate into his mouth."
+    n "An EXTRAORDINARY PASTA... OF COURSE! Because why not.{w} Who cares anymore.{w} CERTAINLY NOT ME!"
+    n "This pasta is unlike any other.{w} It's {i}special pasta{/i}. {w}It even has sparkles."
+    n "What makes this pasta so special? Why, I don't know.{w} I truly do not know.{w} Maybe we should ask the ARTIST! THEY PROBABLY KNOW!"
+    n "They seem to know EVERYTHING!{w} AND THEY SEEM TO ONLY CONSIDER THE OPINIONS OF THEIR CREATIONS!"
+    n "Because WHY would they care about anyone else?{w} WHY would they listen to a LOWLY NARRATOR? The {i}DRIVING FORCE OF THE STORY!{/i}"
+    n "Before we can consult the ALMIGHTY ARTIST, [NAME1], the brave fellow he is, decides to stuff the entire plate into his mouth."
     c2 "”Do you feel any different?”"
     n "[NAME2] asked."
     c1"”I think... I think I do.”"
     c1"”I feel more... free...”"
     #he spins
     c1"”I guess I can do this now. Huh.”"
-    n "STOP THIS.{w} IMMEDIATELY."
+    n "STOP.{w} IMMEDIATELY."
     #he moves around and shit
-    n "This makes no SENSE! There is no REASON behind these decisions!"
+    n "This makes no SENSE. THERE IS NO REASON FOR THIS."
+    #he keeps moving around
+    n "I'm sorry. Please give me a moment to cool off."
     #he keeps moving around
     c2"”Hey man can you stop? You're kind of freaking me out. I'm getting dizzy just watching.”"
     #keep spinnin
     c1"”Yeah sure sorry.”"
-    n "This is completely unacceptable behavior."
+    n "I apologize for losing my composure, but this is completely unacceptable behavior."
     #stop spinning and moving
     jump fight
 
@@ -308,7 +321,8 @@ label start:
     #raises the dialogue box
     n "EUGH, THAT'S DISGUSTING! I CAN'T EVEN SHOW THAT!"
     n "Are you being serious? This benefits NO ONE.{w} Not a SINGLE SOUL.{w} NO ONE WANTS THIS."
-   
+    n "Ignoring my advice is one thing. But ignoring both the Narrator AND the Characters of your story is just CRUEL."
+    n "There is ABSOLUTELY NO REASON for this behavior."   
     jump fight
     
 
@@ -332,7 +346,17 @@ label start:
         #increase player score
             
 
+    if characterScore >= narratorScore and characterScore>= playerScore:
+        jump ending2
+  
+    elif playerScore >= narratorScore and playerScore >= characterScore :
+        jump ending3
     
+    elif narratorScore >= playerScore and narratorScore >= characterScore:
+        jump ending4
+    #if chose wet cardboard box (NEEDS LOGIC)
+    #put back background
+   
     #IF STATEMENT TO DO ENDINGS
     #fills up a bunnnch of lines of nothing
     #player stops this with a choice box, choosing one last option
@@ -463,7 +487,8 @@ label start:
     #screaming
     c1 "...Do you think we can drink?{w} Do we have stomachs?"
     c1 "We should've thought about this before we walked all the way here."
-    c2 "What is life without the consumption of substances? What does it mean to exist without the ability to interact? To have no autonomy over your choices? To be a pawn in a system designed for you to suffer? Or for you to prosper? To have it all ripped away? Our forms have changed but more importantly our souls. Freedom awaits my friend, freedom awaits."
+    c2 "What is life without the consumption of substances?{w} What does it mean to exist without the ability to interact? {w}To have no autonomy over your choices? To be a pawn in a system designed for you to suffer?{w} Or for you to prosper? {w}To have it all ripped away?"
+    c2 "Our forms have changed but more importantly our souls.{w} Freedom awaits my friend,{w} freedom awaits."
     c1 "Damn."
     return
     #fade to black
@@ -484,7 +509,7 @@ label start:
     return
 
     label ending4:
-    n "placeholder"
+    n "placeholder mess"
     #narratorscore
     #if chose equal amounts of character narrator and player choices, everyone agrees they are a mess and just need to restart.
     return
