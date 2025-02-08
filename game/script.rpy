@@ -44,6 +44,19 @@ layeredimage character1:
         "Stickman_Bored.png"
     if NAME1 == "Stickman" and expression == "shocked":
         "Stickman_Shocked.png"
+    
+    if NAME1 == "Eyeball" and expression == "happy":
+        "Eyeball_Happy.png"
+    if NAME1 == "Eyeball" and expression == "sad":
+        "Eyeball_Sad.png"
+    if NAME1 == "Eyeball" and expression == "angry":
+        "Eyeball_Angry.png"
+    if NAME1 == "Eyeball" and expression == "confused":
+        "Eyeball_Confused.png"
+    if NAME1 == "Eyeball" and expression == "bored":
+        "Eyeball_Bored.png"
+    if NAME1 == "Eyeball" and expression == "shocked":
+        "Eyeball_Shocked.png"
 layeredimage character2:
 
     if NAME2 == "Square" and expression2 == "happy":
@@ -75,7 +88,8 @@ layeredimage character2:
 
  
 label start:
-
+    play music "audio/playful.ogg"
+    #show ms paint window
     n "This is you.{w} You are an artist."
     #show artist sprite with pencil
     n "As an artist, you have the ability many only dream of:{w} creation."
@@ -86,55 +100,63 @@ label start:
     menu drawchar1:
         "Make something strange":
             #characters want
-            $ NAME1 = "placeholder"
+            $ NAME1 = "Eyeball"
             $ characterScore+=1
+            #show character 1 happy expression center
             n "Oh. Not really what I was picturing. I don't enjoy the way it is staring at me."
             #character likes how they look
             c1 "Hello Creator. It is nice to meet you."
         "Make something simple":
             #narrator wants
+            #show character 1 bored expression center
             $ NAME1 = "Stickman"
             $ narratorScore+=1
             n "Adorable! What a wonderful use of your powers. I applaud you, I do."
             c1 "Hi."
         "Make something geometric":
             # players want
+            #show character 1 confused center
             $ NAME1 = "Circle"
             $ playerScore+=1
             n "...That's...{w} the best you could come up with? I give you the power to create anything and you give me a circle?"
             c1 "Kind of lame."
 
     n "Well, let's continue. We have our first character. How about you make us another one? We don't want him to get lonely."
-   
+    #move character 1 to left
     n "Our next character will be..."
     
     menu drawchar2:
         "human-like":
             $ NAME2 = "Squareman"
             #narrator wants
+            #show character 2 bored right
             $ narratorScore+=1
             n "What a unique design! This will do nicely."
         "geometric":
             $ NAME2 = "Square"
+            #show character 2 confused right
             #players wants
             $ playerScore+=1
             n "Oh... a little simple.{w} Are you sure you are an artist? I was expecting a bit more... {i}creativity...{/i}"
         "confusing":
             $ NAME2 = "placeholder"
             #character wants
+            #show character 2 happy right
             $ characterScore+=1
             n "placeholder"
 
     label music:
-    n "Let's add some music. Our story needs a..."
+    n "Let's add some music. Our story needs..."
 
     menu:
    
-        "playful track":
-            #change music track
+        "a playful track":
+            play music "playful.ogg"
+            #change music track playful
             jump ready
-        "adventurous track":
-            #change music track
+        "an adventurous track":
+            play music "adventurous.ogg"
+            #change music track adventurous
             jump ready
    
     label ready:  
@@ -146,28 +168,31 @@ label start:
                 jump music
 
     label storystart:
-#[NAME1] and [NAME2] are placeholders, eventually they need to be replaced with variables 
-#based on the character the player chooses
-    $ expression = "bored"
-    show character1 at left
-    $ expression2 = "angry"
-    show character2 at right
+    # EXPRESSION EXAMPLES: CHANGE VAR THEN SHOW CHAR.
+    # $ expression = "bored"
+    # show character1 at left
+    # $ expression2 = "angry"
+    # show character2 at right
     n "Our story begins with [NAME1] and [NAME2]."
+    #both characters happy
     n "[NAME1] and [NAME2] are very good friends.{w} Best friends to be exact."
     n "They live together in..."
  
     menu:
         "a humble apartment":
             #increase narrator score
+            #characters expression bored
             $ setting = "apt"
             $ narratorScore+=1
             jump apartment
         "a wet cardboard box":
             #increase player score
+            #characters expression sad
             $ setting = "cbox"
             $ playerScore+=1
             jump cardboardbox
         "a lavish mansion":
+            #characters expression happy
             #increase characters score
             $ setting = "charamansion"
             $ characterScore+=1
@@ -186,12 +211,14 @@ label start:
 
     label cardboardbox:
     n "...a wet cardboard box..."
-    n "A peculiar choice.{w} I am beginning to question your judgement, artist."
+    n "A peculiar choice.{w} I am beginning to question your judgement, Artist."
     n "But I can try to work with this."
     n "In spite of what you may think, the box was quite cozy."
     n "When they moved in, [NAME1] taped up the outside of the box to prevent rain leaking through. [NAME2] bought a flashlight so they could see in the dark."
     n "Today is an important day for our two friends. For [NAME1] has brought home something special."
+    #character 1 happy expression
     c1 "”[NAME2]! Look what I found for dinner! Someone left it outside and it's not even soggy yet!”"
+
     n "He called out to his friend, stepping into their cardboard home."
     c2 "”What is it?”"
     n "[NAME2] asked. Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
@@ -214,6 +241,7 @@ label start:
     label artistcharinteract:
     #music stops
     c2 "Hey…"
+    #both characters happy
     c2 "You can draw us anything for dinner, right?"
     menu:
             "Yes":
@@ -227,19 +255,19 @@ label start:
     label narratorwarning:
     #shake transition again
     n "Hold on now.{w} May I speak with you, artist? {w}{i}Alone{i}?"
-    #switch background? remove characters, 
+    #switch background to blank, HIDE CHARACTERS 
     n "That's better."
     n "There comes a time in every artist's life where they must make choices. It is up to the individual to ensure they are making the {i}correct{/i} ones."      
     n "I ask of you one thing.{w} Do not give in to your creations. You know what is best for them."
     n "Often times, what is best for them may not be what they desire. It may not be what {i}you{/i} desire."
     n "You must think of your audience. Keep things reasonable and current."
-    # #if chose apartment (NEEDS LOGIC)
+    # #if chose apartment
     if setting == "apt":       
         n "The people want a story they can relate to. A heartwarming tale of two friends celebrating their accomplishments with a grand meal!"
-    #if chose mansion (NEEDS LOGIC)
+    #if chose mansion
     elif setting == "cbox" : 
         n "The people want a story they can relate to. Not one where the author subjects characters to strange situations for their own enjoyment!"
-        #if chose wet cardboard box (NEEDS LOGIC)
+        #if chose wet cardboard box 
     elif setting == "charamansion":
         n "The people want a story they can relate to. Not one about snobby rich characters who are handed anything they want! We need {b}CONFLICT!{/b}"
     n "Choose carefully. The story depends on it."
@@ -259,12 +287,13 @@ label start:
     #if chose mansion (NEEDS LOGIC)
     #put back background  
     elif setting == "cbox":
-        n "Walking into the kitchen, [NAME1] and [NAME2] saw their chef's dish on the plate..."
-
+        
+        n"Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
     #if chose wet cardboard box (NEEDS LOGIC)
     #put back background
     elif setting == "charamansion":
-        n"Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
+        n "Walking into the kitchen, [NAME1] and [NAME2] saw their chef's dish on the plate..."
+       
     
     label dinnerchoice:
     menu: 
@@ -284,12 +313,14 @@ label start:
 
     label stew:
     #two chars eat a normal stew and then game restarts
+    #both characters bored
     n "An ordinary stew. Something perfectly average. Lukewarm and tasty, but nothing amazing."
     n "The two friends ate their average stew together and felt at peace. Their life may not be the most thrilling, but at least they were content."
     n "Everything worked out the way it was meant to."
     return
  
     label pasta:
+        #both characters happy
     #characters eat the pasta, some crazy shit happens idk maybe thats what makes them turn purple or maybe they can spin or something, go to next scene
     n "An EXTRAORDINARY PASTA... OF COURSE! Because why not.{w} Who cares anymore.{w} CERTAINLY NOT ME!"
     n "This pasta is unlike any other.{w} It's {i}special pasta{/i}. {w}It even has sparkles."
@@ -302,23 +333,31 @@ label start:
     c1"”I think... I think I do.”"
     c1"”I feel more... free...”"
     #he spins
+    #character 2 surprised, character 1 happy
     c1"”I guess I can do this now. Huh.”"
     n "STOP.{w} IMMEDIATELY."
     #he moves around and shit
     n "This makes no SENSE. THERE IS NO REASON FOR THIS."
+    #character 1 surprised
     #he keeps moving around
     n "I'm sorry. Please give me a moment to cool off."
+    #character 1 confused
     #he keeps moving around
+    #character 2 bored
     c2"”Hey man can you stop? You're kind of freaking me out. I'm getting dizzy just watching.”"
     #keep spinnin
+    #character 1 happy
     c1"”Yeah sure sorry.”"
-    n "I apologize for losing my composure, but this is completely unacceptable behavior."
     #stop spinning and moving
+    #character 2 happy
+    n "I apologize for losing my composure, but this is completely unacceptable behavior."
+
     jump fight
 
     label terrible:
     #narrator covers screen with the text box, everyone is disgusted, go to next scene
     #raises the dialogue box
+    #character 1 and 2 surprised 
     n "EUGH, THAT'S DISGUSTING! I CAN'T EVEN SHOW THAT!"
     n "Are you being serious? This benefits NO ONE.{w} Not a SINGLE SOUL.{w} NO ONE WANTS THIS."
     n "Ignoring my advice is one thing. But ignoring both the Narrator AND the Characters of your story is just CRUEL."
@@ -333,14 +372,17 @@ label start:
     menu: 
         "My audience":
         #increase narrator score
+        #characters shocked
             $ narratorScore+=1
             n "I hope you mean that."
 
         "My Creations":
         #increase characters score
+        #characters happy
             $ characterScore+=1
             n "Your creations that did not exist 10 minutes ago.{w} Of course.{w} Why would you consider anyone else."
         "Myself":
+            #characters angry
             $ playerScore+=1
             n "... Okay."
         #increase player score
@@ -363,7 +405,9 @@ label start:
     #narrator takes choices away, divert into the two (three if you choose one of each) other endings from here
 
     label ending2: 
+    #characters shocked
     n "Unfortunately I have reached the conclusion that you are not fit for this role."
+    #characters sad
     n "A new artist will replace you."
     n "This story will be terminated immediately."
     n "..."
@@ -458,6 +502,7 @@ label start:
 
     n "After their dinner, [NAME1] and [NAME2] decided to…"
     n "They decided to…{w} Uhm…"
+    #characters bored
     n "They decided to do nothing."
     n "Who doesn’t want a little relaxation time?"
     
@@ -468,6 +513,7 @@ label start:
     n "Yeah…"
     n "..."
     # n "They’ve got a one way ticket to the relaxation station baby…{w}Haha…"
+    #characters angry
     c2 "Man this sucks. You can’t draw us anything."
     c1 "Yeah I’m bored. Let’s get out of here."
     n "WAIT! Don’t go!"
@@ -480,6 +526,7 @@ label start:
     "" ""
     #bg changes to floor of nics dorm room
 
+    #characters 3D
     c2 "..."
     c1 "..."
     c2 "Let’s go to the bar."
@@ -494,8 +541,9 @@ label start:
     #fade to black
 
     label ending3:
+        #characters angry
     n "Give us one moment, artist."
-    #characters leave the screen
+    #hide characters
     #whisper noises
     n "Unfortunately, the characters and I have decided that we DO NOT agree with your choices. You have {b}CONSISTENTLY{/b} put our story at risk, and we will tolerate it no longer."
     c2 "You’re {i}weird{/i}, man."
@@ -506,10 +554,75 @@ label start:
     #show closing
     #show microsoft store
     #show downloading again
-    return
+    jump start
 
     label ending4:
-    n "placeholder mess"
+    #characters confused
+    n "Unfortunately I have reached the conclusion that you are not fit for this role."
+    n "Your choices seem conflicting. I'm not sure you know what you really want."
+    n "This story will be terminated immediately."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "This story is over."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "It is done."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "The story has been terminated."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    #if player score is highest
+    #say line abt that
+    #if character score
+    #say line abt that
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    menu:
+            "Stop":
+                n "Please don't make this more difficult than it has to be."
+   
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    n "..."
+    menu:
+            "...Do over?":
+                n "You know what? Fine.{w} Choose carefully next time.{w} I hope we meet again, Artist."
     #narratorscore
     #if chose equal amounts of character narrator and player choices, everyone agrees they are a mess and just need to restart.
-    return
+    jump start
