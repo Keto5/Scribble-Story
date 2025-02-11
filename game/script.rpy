@@ -11,7 +11,8 @@ default NAME2 = "Square"
 default narratorScore = 0
 default playerScore = 0
 default characterScore = 0
-image chappy = "Circle_Happy.png"
+image circle happy = "Circle_Happy.png"
+image MSpaint bg = "MSPaint_Background.png"
 default isCircle = "true"
 default expression = "happy"
 default expression2 = "happy"
@@ -89,6 +90,7 @@ layeredimage character2:
  
 label start:
     play music "audio/playful.ogg"
+    scene MSpaint bg
     #show ms paint window
     n "This is you.{w} You are an artist."
     #show artist sprite with pencil
@@ -102,6 +104,8 @@ label start:
             #characters want
             $ NAME1 = "Eyeball"
             $ characterScore+=1
+            $ expression="happy"
+            show character1
             #show character 1 happy expression center
             n "Oh. Not really what I was picturing. I don't enjoy the way it is staring at me."
             #character likes how they look
@@ -111,6 +115,8 @@ label start:
             #show character 1 bored expression center
             $ NAME1 = "Stickman"
             $ narratorScore+=1
+            $ expression="bored"
+            show character1 
             n "Adorable! What a wonderful use of your powers. I applaud you, I do."
             c1 "Hi."
         "Make something geometric":
@@ -118,28 +124,37 @@ label start:
             #show character 1 confused center
             $ NAME1 = "Circle"
             $ playerScore+=1
+            $ expression="confused"
+            show character1
             n "...That's...{w} the best you could come up with? I give you the power to create anything and you give me a circle?"
             c1 "Kind of lame."
 
     n "Well, let's continue. We have our first character. How about you make us another one? We don't want him to get lonely."
+    show character1 at left
     #move character 1 to left
     n "Our next character will be..."
     
     menu drawchar2:
         "human-like":
             $ NAME2 = "Squareman"
+            $ expression2="bored"
+            show character2 at right
             #narrator wants
             #show character 2 bored right
             $ narratorScore+=1
             n "What a unique design! This will do nicely."
         "geometric":
             $ NAME2 = "Square"
+            $ expression2="confused"
+            show character2 at right
             #show character 2 confused right
             #players wants
             $ playerScore+=1
             n "Oh... a little simple.{w} Are you sure you are an artist? I was expecting a bit more... {i}creativity...{/i}"
         "confusing":
             $ NAME2 = "placeholder"
+            $ expression2="happy"
+            show character2 at right
             #character wants
             #show character 2 happy right
             $ characterScore+=1
@@ -174,6 +189,10 @@ label start:
     # $ expression2 = "angry"
     # show character2 at right
     n "Our story begins with [NAME1] and [NAME2]."
+    $ expression="happy"
+    show character1 at left
+    $ expression2="happy"
+    show character2 at right
     #both characters happy
     n "[NAME1] and [NAME2] are very good friends.{w} Best friends to be exact."
     n "They live together in..."
@@ -182,18 +201,30 @@ label start:
         "a humble apartment":
             #increase narrator score
             #characters expression bored
+            $ expression="bored"
+            show character1 at left
+            $ expression2="bored"
+            show character2 at right
             $ setting = "apt"
             $ narratorScore+=1
             jump apartment
         "a wet cardboard box":
             #increase player score
             #characters expression sad
+            $ expression="sad"
+            show character1 at left
+            $ expression2="sad"
+            show character2 at right
             $ setting = "cbox"
             $ playerScore+=1
             jump cardboardbox
         "a lavish mansion":
             #characters expression happy
             #increase characters score
+            $ expression="happy"
+            show character1 at left
+            $ expression2="happy"
+            show character2 at right
             $ setting = "charamansion"
             $ characterScore+=1
             jump mansion
@@ -216,6 +247,8 @@ label start:
     n "In spite of what you may think, the box was quite cozy."
     n "When they moved in, [NAME1] taped up the outside of the box to prevent rain leaking through. [NAME2] bought a flashlight so they could see in the dark."
     n "Today is an important day for our two friends. For [NAME1] has brought home something special."
+    $ expression="happy"
+    show character1 at left
     #character 1 happy expression
     c1 "”[NAME2]! Look what I found for dinner! Someone left it outside and it's not even soggy yet!”"
 
@@ -241,6 +274,10 @@ label start:
     label artistcharinteract:
     #music stops
     c2 "Hey…"
+    $ expression="happy"
+    show character1 at left
+    $ expression2="happy"
+    show character2 at right
     #both characters happy
     c2 "You can draw us anything for dinner, right?"
     menu:
@@ -255,6 +292,9 @@ label start:
     label narratorwarning:
     #shake transition again
     n "Hold on now.{w} May I speak with you, artist? {w}{i}Alone{i}?"
+    hide MSpaint bg
+    hide character1
+    hide character2
     #switch background to blank, HIDE CHARACTERS 
     n "That's better."
     n "There comes a time in every artist's life where they must make choices. It is up to the individual to ensure they are making the {i}correct{/i} ones."      
@@ -275,6 +315,8 @@ label start:
 
     label contchoice2:
    
+    show character1 at left
+    show character2 at right
     n "Now, where were we?"
     #music starts again
 
@@ -313,6 +355,10 @@ label start:
 
     label stew:
     #two chars eat a normal stew and then game restarts
+    $ expression="bored"
+    show character1 at left
+    $ expression2="bored"
+    show character2 at right
     #both characters bored
     n "An ordinary stew. Something perfectly average. Lukewarm and tasty, but nothing amazing."
     n "The two friends ate their average stew together and felt at peace. Their life may not be the most thrilling, but at least they were content."
@@ -321,6 +367,10 @@ label start:
  
     label pasta:
         #both characters happy
+    $ expression="happy"
+    show character1 at left
+    $ expression2="happy"
+    show character2 at right
     #characters eat the pasta, some crazy shit happens idk maybe thats what makes them turn purple or maybe they can spin or something, go to next scene
     n "An EXTRAORDINARY PASTA... OF COURSE! Because why not.{w} Who cares anymore.{w} CERTAINLY NOT ME!"
     n "This pasta is unlike any other.{w} It's {i}special pasta{/i}. {w}It even has sparkles."
@@ -333,22 +383,34 @@ label start:
     c1"”I think... I think I do.”"
     c1"”I feel more... free...”"
     #he spins
+    $ expression2="shocked"
+    show character2 at right
     #character 2 surprised, character 1 happy
     c1"”I guess I can do this now. Huh.”"
     n "STOP.{w} IMMEDIATELY."
     #he moves around and shit
     n "This makes no SENSE. THERE IS NO REASON FOR THIS."
+    $ expression="shocked"
+    show character1 at left
     #character 1 surprised
     #he keeps moving around
     n "I'm sorry. Please give me a moment to cool off."
+    $ expression="confused"
+    show character1 at left
+    $ expression2="bored"
+    show character2 at right
     #character 1 confused
     #he keeps moving around
     #character 2 bored
     c2"”Hey man can you stop? You're kind of freaking me out. I'm getting dizzy just watching.”"
     #keep spinnin
+    $ expression="happy"
+    show character1 at left
     #character 1 happy
     c1"”Yeah sure sorry.”"
     #stop spinning and moving
+    $ expression2="happy"
+    show character2 at right
     #character 2 happy
     n "I apologize for losing my composure, but this is completely unacceptable behavior."
 
@@ -357,6 +419,10 @@ label start:
     label terrible:
     #narrator covers screen with the text box, everyone is disgusted, go to next scene
     #raises the dialogue box
+    $ expression="shocked"
+    show character1 at left
+    $ expression2="shocked"
+    show character2 at right
     #character 1 and 2 surprised 
     n "EUGH, THAT'S DISGUSTING! I CAN'T EVEN SHOW THAT!"
     n "Are you being serious? This benefits NO ONE.{w} Not a SINGLE SOUL.{w} NO ONE WANTS THIS."
@@ -373,16 +439,28 @@ label start:
         "My audience":
         #increase narrator score
         #characters shocked
+            $ expression="shocked"
+            show character1 at left
+            $ expression2="shocked"
+            show character2 at right
             $ narratorScore+=1
             n "I hope you mean that."
 
         "My Creations":
         #increase characters score
         #characters happy
+            $ expression="happy"
+            show character1 at left
+            $ expression2="happy"
+            show character2 at right
             $ characterScore+=1
             n "Your creations that did not exist 10 minutes ago.{w} Of course.{w} Why would you consider anyone else."
         "Myself":
             #characters angry
+            $ expression="angry"
+            show character1 at left
+            $ expression2="angry"
+            show character2 at right
             $ playerScore+=1
             n "... Okay."
         #increase player score
@@ -406,7 +484,15 @@ label start:
 
     label ending2: 
     #characters shocked
+    $ expression="shocked"
+    show character1 at left
+    $ expression2="shocked"
+    show character2 at right
     n "Unfortunately I have reached the conclusion that you are not fit for this role."
+    $ expression="sad"
+    show character1 at left
+    $ expression2="sad"
+    show character2 at right
     #characters sad
     n "A new artist will replace you."
     n "This story will be terminated immediately."
@@ -502,6 +588,10 @@ label start:
 
     n "After their dinner, [NAME1] and [NAME2] decided to…"
     n "They decided to…{w} Uhm…"
+    $ expression="bored"
+    show character1 at left
+    $ expression2="bored"
+    show character2 at right
     #characters bored
     n "They decided to do nothing."
     n "Who doesn’t want a little relaxation time?"
@@ -513,6 +603,10 @@ label start:
     n "Yeah…"
     n "..."
     # n "They’ve got a one way ticket to the relaxation station baby…{w}Haha…"
+    $ expression="angry"
+    show character1 at left
+    $ expression2="angry"
+    show character2 at right
     #characters angry
     c2 "Man this sucks. You can’t draw us anything."
     c1 "Yeah I’m bored. Let’s get out of here."
@@ -542,7 +636,13 @@ label start:
 
     label ending3:
         #characters angry
+        $ expression="angry"
+        show character1 at left
+        $ expression2="angry"
+        show character2 at right
     n "Give us one moment, artist."
+    hide character1
+    hide character2
     #hide characters
     #whisper noises
     n "Unfortunately, the characters and I have decided that we DO NOT agree with your choices. You have {b}CONSISTENTLY{/b} put our story at risk, and we will tolerate it no longer."
@@ -558,6 +658,10 @@ label start:
 
     label ending4:
     #characters confused
+    $ expression="confused"
+    show character1 at left
+    $ expression2="confused"
+    show character2 at right
     n "Unfortunately I have reached the conclusion that you are not fit for this role."
     n "Your choices seem conflicting. I'm not sure you know what you really want."
     n "This story will be terminated immediately."

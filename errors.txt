@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 355: elif clause expects a non-empty block.
-    elif narratorScore >= playerScore and narratorScore >= characterScore:
-                                                                          ^
-
-File "game/script.rpy", line 359: expected statement.
-    elif setting == "charamansion":
-                 ^
+File "game/script.rpy", line 277: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    $ expression="happy"
+    ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Sat Feb  8 11:39:32 2025
+Tue Feb 11 00:57:25 2025
