@@ -1,28 +1,28 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 9, in script
-    define left2 = position(xalign=0.1, yalign= 0.0)
-  File "game/script.rpy", line 9, in <module>
-    define left2 = position(xalign=0.1, yalign= 0.0)
-TypeError: __new__() got an unexpected keyword argument 'xalign'
+  File "game/script.rpy", line 107, in script
+    if true:
+  File "game/script.rpy", line 107, in <module>
+    if true:
+NameError: name 'true' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 9, in script
-    define left2 = position(xalign=0.1, yalign= 0.0)
-  File "C:\Users\13473\Downloads\renpy-8.3.4-sdk\renpy-8.3.4-sdk\renpy\ast.py", line 2241, in execute
-    self.set()
-  File "C:\Users\13473\Downloads\renpy-8.3.4-sdk\renpy-8.3.4-sdk\renpy\ast.py", line 2255, in set
-    value = renpy.python.py_eval_bytecode(self.code.bytecode)
-  File "C:\Users\13473\Downloads\renpy-8.3.4-sdk\renpy-8.3.4-sdk\renpy\python.py", line 1202, in py_eval_bytecode
+  File "game/script.rpy", line 107, in script
+    if true:
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\ast.py", line 1849, in execute
+    if renpy.python.py_eval(condition):
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1209, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1202, in py_eval_bytecode
     return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 9, in <module>
-    define left2 = position(xalign=0.1, yalign= 0.0)
-TypeError: __new__() got an unexpected keyword argument 'xalign'
+  File "game/script.rpy", line 107, in <module>
+    if true:
+NameError: name 'true' is not defined
 
-Windows-10-10.0.22631 AMD64
+Windows-10-10.0.26100 AMD64
 Ren'Py 8.3.4.24120703
 Scribble Story 1.0
-Mon Feb 10 23:13:34 2025
+Tue Feb 11 14:10:22 2025

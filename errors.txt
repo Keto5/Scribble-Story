@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 277: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
-    $ expression="happy"
-    ^
+File "game/script.rpy", line 185: expected end of line
+    play music "audio/Music/adventurous.wav"s
+                                            ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Tue Feb 11 00:57:25 2025
+Tue Feb 11 14:39:11 2025

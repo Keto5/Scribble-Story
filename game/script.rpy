@@ -17,7 +17,7 @@ default isCircle = "true"
 default expression = "happy"
 default expression2 = "happy"
 default setting = "apt"
-
+default isPlayful = "true"
 # The game starts here.
 layeredimage character1:
 
@@ -72,6 +72,7 @@ layeredimage character2:
         "Square_Bored.png"
     if NAME2 == "Square" and expression2 == "shocked":
         "Square_Shocked.png"
+
     if NAME2 == "Squareman" and expression2 == "happy":
         "Squareman_Happy.png"
     if NAME2 == "Squareman" and expression2 == "sad":
@@ -85,20 +86,31 @@ layeredimage character2:
     if NAME2 == "Squareman" and expression2 == "shocked":
         "Squareman_Shocked.png"
 
+    if NAME2 == "Abomination" and expression2 == "happy":
+        "Abomination_Happy.png"
+    if NAME2 == "Abomination" and expression2 == "sad":
+        "Abomination_Sad.png"
+    if NAME2 == "Abomination" and expression2 == "angry":
+        "Abomination_Angry.png"
+    if NAME2 == "Abomination" and expression2 == "confused":
+        "Abomination.png"
+    if NAME2 == "Abomination" and expression2 == "bored":
+        "Abomination_Bored.png"
+    if NAME2 == "Abomination" and expression2 == "shocked":
+        "Abomination_Shocked.png"
 
 
  
 label start:
-    play music "audio/playful.ogg"
     scene MSpaint bg
     #show ms paint window
-    n "This is you.{w} You are an artist."
+    n "You are an artist."
+    
     #show artist sprite with pencil
     n "As an artist, you have the ability many only dream of:{w} creation."
     #hide artist sprite
     n "Go on now artist, {i}create!{/i}"
    
-
     menu drawchar1:
         "Make something strange":
             #characters want
@@ -152,13 +164,13 @@ label start:
             $ playerScore+=1
             n "Oh... a little simple.{w} Are you sure you are an artist? I was expecting a bit more... {i}creativity...{/i}"
         "confusing":
-            $ NAME2 = "placeholder"
+            $ NAME2 = "Abomination"
             $ expression2="happy"
             show character2 at right
             #character wants
             #show character 2 happy right
             $ characterScore+=1
-            n "placeholder"
+            n "Uhm... Okay. This is not particularly my thing, but I guess someone out there will enjoy your character."
 
     label music:
     n "Let's add some music. Our story needs..."
@@ -166,11 +178,13 @@ label start:
     menu:
    
         "a playful track":
-            play music "playful.ogg"
+            play music "audio/Music/playful.wav"
+            $ isPlayful = "true"
             #change music track playful
             jump ready
         "an adventurous track":
-            play music "adventurous.ogg"
+            play music "audio/Music/adventurous.wav"
+            $ isPlayful = "false"
             #change music track adventurous
             jump ready
    
@@ -242,8 +256,8 @@ label start:
 
     label cardboardbox:
     n "...a wet cardboard box..."
-    n "A peculiar choice.{w} I am beginning to question your judgement, Artist."
-    n "But I can try to work with this."
+    n "{i}A peculiar choice.{w} I am beginning to question your judgement, Artist.{/i}"
+    n "{i}But I can try to work with this.{/i}"
     n "In spite of what you may think, the box was quite cozy."
     n "When they moved in, [NAME1] taped up the outside of the box to prevent rain leaking through. [NAME2] bought a flashlight so they could see in the dark."
     n "Today is an important day for our two friends. For [NAME1] has brought home something special."
@@ -260,8 +274,8 @@ label start:
 
     label mansion:
     n "A lavish mansion with six floors, an indoor pool, a personal chef, and a full golf course. The two friends had anything and everything they could ever need."
-    n "Are you sure this isn't {i}too much{/i}, Artist? {w} It's a little... extravagant."
-    n "I can try to make it work.{w} Just be careful for next time."
+    n "{i}Are you sure this isn't too much, Artist? {w} It's a little... extravagant.{/i}"
+    n "{i}I can try to make it work.{w} Just be careful for next time.{/i}"
     n "It was late evening, and the friends were waiting for their dinner. It did not typically take this long for their chef to prepare a dish, so they could only assume this one must be special."
     n "After another 30 minutes of waiting, the chef alerted [NAME1] that dinner was prepared."
     "Personal Chef" "I apologize for the wait sir, we were testing out a new recipe. I do hope you enjoy."
@@ -273,10 +287,14 @@ label start:
 
     label artistcharinteract:
     #music stops
-    c2 "Hey…"
-    $ expression="happy"
+    stop music
     show character1 at left
-    $ expression2="happy"
+    with hpunch
+    c2 "Um..."
+    c2 "Hey…{w} Before you do that..."
+    $ expression="bored"
+    show character1 at left
+    $ expression2="bored"
     show character2 at right
     #both characters happy
     c2 "You can draw us anything for dinner, right?"
@@ -319,7 +337,10 @@ label start:
     show character2 at right
     n "Now, where were we?"
     #music starts again
-
+    if isPlayful:
+        play music "audio/Music/playful.wav"
+    else:
+        play music "audio/Music/adventurous.wav"
     #if chose apartment (NEEDS LOGIC)
     #put back background  
     if setting == "apt":
