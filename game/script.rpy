@@ -12,12 +12,18 @@ default narratorScore = 0
 default playerScore = 0
 default characterScore = 0
 image circle happy = "Circle_Happy.png"
-image MSpaint bg = "MSPaint_Background.png"
+image MSpaint bg = "MSPaint_Background.jpg"
+image Mansion bg = "LavishMansionBackground.jpg"
+image Apartment bg = "HumbleApartmentBackground.jpg"
+image Cbox bg = "WetCardboardBoxBackground.jpg"
+image BowlStew = "BowlStew.png"
+image BowlPasta = "BowlPasta.png"
+image BowlWHAT = "BowlWHAT.png"
 default isCircle = "true"
 default expression = "happy"
 default expression2 = "happy"
 default setting = "apt"
-default isPlayful = "true"
+default isPlayful = "false"
 # The game starts here.
 layeredimage character1:
 
@@ -100,12 +106,32 @@ layeredimage character2:
         "Abomination_Shocked.png"
 
 
+transform ts_tilt(xrot=0, yrot=0, ts_speed=0.3):
+    linear ts_speed xrotate xrot yrotate yrot
+
+transform cam_reset:
+    perspective True
+    rotate 0 xrotate 0 yrotate 0 zrotate 0
+
+transform ts_acSpin(ts_speed=0.5, xrot=0, xoff=0, yoff=0, rt=None): 
+    parallel:
+        linear 1.0 xrotate xrot xoffset xoff yoffset yoff
+        
+    parallel:
+        yrotate 0
+        linear 5.0 yrotate 360
+        repeat rt
+
  
 label start:
+    stop music
+    camera at cam_reset
     scene MSpaint bg
+    # show BowlStew at ts_tilt(20, -20)
     #show ms paint window
     n "You are an artist."
-    
+    # show BowlStew at ts_tilt(20, 20)
+ 
     #show artist sprite with pencil
     n "As an artist, you have the ability many only dream of:{w} creation."
     #hide artist sprite
@@ -215,6 +241,7 @@ label start:
         "a humble apartment":
             #increase narrator score
             #characters expression bored
+            scene Apartment bg
             $ expression="bored"
             show character1 at left
             $ expression2="bored"
@@ -223,6 +250,7 @@ label start:
             $ narratorScore+=1
             jump apartment
         "a wet cardboard box":
+            scene Cbox bg
             #increase player score
             #characters expression sad
             $ expression="sad"
@@ -235,6 +263,7 @@ label start:
         "a lavish mansion":
             #characters expression happy
             #increase characters score
+            scene Mansion bg
             $ expression="happy"
             show character1 at left
             $ expression2="happy"
@@ -265,7 +294,8 @@ label start:
     show character1 at left
     #character 1 happy expression
     c1 "”[NAME2]! Look what I found for dinner! Someone left it outside and it's not even soggy yet!”"
-
+    $ expression2="happy"
+    show character2 at right
     n "He called out to his friend, stepping into their cardboard home."
     c2 "”What is it?”"
     n "[NAME2] asked. Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
@@ -287,8 +317,10 @@ label start:
 
     label artistcharinteract:
     #music stops
+    scene MSpaint bg
     stop music
     show character1 at left
+    show character2 at right
     with hpunch
     c2 "Um..."
     c2 "Hey…{w} Before you do that..."
@@ -310,7 +342,7 @@ label start:
     label narratorwarning:
     #shake transition again
     n "Hold on now.{w} May I speak with you, artist? {w}{i}Alone{i}?"
-    hide MSpaint bg
+    #hide MSpaint bg 
     hide character1
     hide character2
     #switch background to blank, HIDE CHARACTERS 
@@ -337,7 +369,7 @@ label start:
     show character2 at right
     n "Now, where were we?"
     #music starts again
-    if isPlayful:
+    if isPlayful == "true":
         play music "audio/Music/playful.wav"
     else:
         play music "audio/Music/adventurous.wav"
@@ -362,12 +394,15 @@ label start:
     menu: 
         "an ordinary stew":#increase narrator score
             $ narratorScore+=1
+            show BowlStew
             jump stew
         "an {i}extraordinary{/i} pasta":
         #increase characters score
+            show BowlPasta
             $ characterScore+=1
             jump pasta
         "something terrible":
+            show BowlWHAT
             $ playerScore+=1
             jump terrible
         #increase player score
@@ -384,7 +419,9 @@ label start:
     n "An ordinary stew. Something perfectly average. Lukewarm and tasty, but nothing amazing."
     n "The two friends ate their average stew together and felt at peace. Their life may not be the most thrilling, but at least they were content."
     n "Everything worked out the way it was meant to."
-    return
+
+    jump start 
+    with fade
  
     label pasta:
         #both characters happy
@@ -399,25 +436,31 @@ label start:
     n "They seem to know EVERYTHING!{w} AND THEY SEEM TO ONLY CONSIDER THE OPINIONS OF THEIR CREATIONS!"
     n "Because WHY would they care about anyone else?{w} WHY would they listen to a LOWLY NARRATOR? The {i}DRIVING FORCE OF THE STORY!{/i}"
     n "Before we can consult the ALMIGHTY ARTIST, [NAME1], the brave fellow he is, decides to stuff the entire plate into his mouth."
+    hide BowlPasta
     c2 "”Do you feel any different?”"
     n "[NAME2] asked."
     c1"”I think... I think I do.”"
-    c1"”I feel more... free...”"
+    show character1 at ts_tilt(20, -20)
+    c1"”I feel more...”"
+    show character1 at ts_tilt(20, 20)
+    c1"”free...”"
     #he spins
     $ expression2="shocked"
     show character2 at right
+    show character1 at ts_acSpin(1.2):
+        xcenter 0.2
     #character 2 surprised, character 1 happy
     c1"”I guess I can do this now. Huh.”"
     n "STOP.{w} IMMEDIATELY."
     #he moves around and shit
     n "This makes no SENSE. THERE IS NO REASON FOR THIS."
     $ expression="shocked"
-    show character1 at left
+    # show character1 at left
     #character 1 surprised
     #he keeps moving around
     n "I'm sorry. Please give me a moment to cool off."
     $ expression="confused"
-    show character1 at left
+    # show character1 at left
     $ expression2="bored"
     show character2 at right
     #character 1 confused
@@ -426,10 +469,11 @@ label start:
     c2"”Hey man can you stop? You're kind of freaking me out. I'm getting dizzy just watching.”"
     #keep spinnin
     $ expression="happy"
-    show character1 at left
+    # show character1 at left
     #character 1 happy
     c1"”Yeah sure sorry.”"
     #stop spinning and moving
+    show character1 at left
     $ expression2="happy"
     show character2 at right
     #character 2 happy
@@ -517,6 +561,7 @@ label start:
     #characters sad
     n "A new artist will replace you."
     n "This story will be terminated immediately."
+    stop music
     n "..."
     n "..."
     n "..."
@@ -635,6 +680,10 @@ label start:
     #shake
     n "I CAN BE FUN! I PROMISE!"
     c1 "Bye…"
+    stop music
+    hide character1
+    hide character2
+    hide MSpaint bg
     #different text box
     #they slide off screen
     #bg changes to nics dorm room, pointing at screen.
@@ -664,6 +713,9 @@ label start:
     n "Give us one moment, artist."
     hide character1
     hide character2
+    "" "{i}*whisper whisper whisper*{/i}"
+    show character1
+    show character2
     #hide characters
     #whisper noises
     n "Unfortunately, the characters and I have decided that we DO NOT agree with your choices. You have {b}CONSISTENTLY{/b} put our story at risk, and we will tolerate it no longer."

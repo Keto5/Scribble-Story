@@ -1,28 +1,32 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 107, in script
-    if true:
-  File "game/script.rpy", line 107, in <module>
-    if true:
-NameError: name 'true' is not defined
+  File "game/script.rpy", line 119, in script
+    show BowlStew at ts_tilt(20, -=20)
+SyntaxError: invalid syntax (game/script.rpy, line 119)
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 107, in script
-    if true:
-  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\ast.py", line 1849, in execute
-    if renpy.python.py_eval(condition):
-  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1209, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1202, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "game/script.rpy", line 107, in <module>
-    if true:
-NameError: name 'true' is not defined
+  File "game/script.rpy", line 119, in script
+    show BowlStew at ts_tilt(20, -=20)
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\ast.py", line 1117, in execute
+    show_imspec(self.imspec, atl=getattr(self, "atl", None))
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\ast.py", line 1076, in show_imspec
+    at_list = [ renpy.python.py_eval(i) for i in at_list ]
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\ast.py", line 1076, in <listcomp>
+    at_list = [ renpy.python.py_eval(i) for i in at_list ]
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1207, in py_eval
+    code = py_compile(code, 'eval')
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1144, in py_compile
+    raise e
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1081, in py_compile
+    raise orig_e
+  File "C:\Users\cdero\Downloads\renpy-8.3.4-sdk\renpy\python.py", line 1073, in py_compile
+    tree = compile(source, filename, py_mode, ast.PyCF_ONLY_AST | flags, 1)
+SyntaxError: invalid syntax (game/script.rpy, line 119)
 
 Windows-10-10.0.26100 AMD64
 Ren'Py 8.3.4.24120703
 Scribble Story 1.0
-Tue Feb 11 14:10:22 2025
+Wed Feb 12 10:19:37 2025

@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 185: expected end of line
-    play music "audio/Music/adventurous.wav"s
-                                            ^
+File "game/script.rpy", line 26: expected statement.
+    isPlayful = "false"
+              ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Tue Feb 11 14:39:11 2025
+Wed Feb 12 10:47:49 2025
