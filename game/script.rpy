@@ -1,4 +1,4 @@
-﻿# The script of the game goes in this file.
+# The script of the game goes in this file.
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
@@ -26,7 +26,7 @@ default setting = "apt"
 default isPlayful = "false"
 # The game starts here.
 layeredimage character1:
-
+    yoffset(-150)
     if NAME1 == "Circle" and expression == "happy":
         "Circle_Happy.png"
     if NAME1 == "Circle" and expression == "sad":
@@ -65,7 +65,7 @@ layeredimage character1:
     if NAME1 == "Eyeball" and expression == "shocked":
         "Eyeball_Shocked.png"
 layeredimage character2:
-
+    yoffset(-100)
     if NAME2 == "Square" and expression2 == "happy":
         "Square_Happy.png"
     if NAME2 == "Square" and expression2 == "sad":
@@ -324,9 +324,9 @@ label start:
     with hpunch
     c2 "Um..."
     c2 "Hey…{w} Before you do that..."
-    $ expression="happy"
+    $ expression="bored"
     show character1 at left
-    $ expression2="happy"
+    $ expression2="bored"
     show character2 at right
     #both characters happy
     c2 "You can draw us anything for dinner, right?"
@@ -342,7 +342,7 @@ label start:
     label narratorwarning:
     #shake transition again
     n "Hold on now.{w} May I speak with you, artist? {w}{i}Alone{i}?"
-    hide MSpaint bg 
+    #hide MSpaint bg 
     hide character1
     hide character2
     #switch background to blank, HIDE CHARACTERS 
@@ -365,6 +365,8 @@ label start:
 
     label contchoice2:
    
+    show character1 at left
+    show character2 at right
     n "Now, where were we?"
     #music starts again
     if isPlayful == "true":
@@ -374,26 +376,17 @@ label start:
     #if chose apartment (NEEDS LOGIC)
     #put back background  
     if setting == "apt":
-        show Apartment bg
-        show character1 at left
-        show character2 at right
         n "[NAME2] pulled the lid off his pot to reveal..."
     #choices
 
     #if chose mansion (NEEDS LOGIC)
     #put back background  
     elif setting == "cbox":
-        show Cbox bg
-        show character1 at left
-        show character2 at right
-
+        
         n"Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
     #if chose wet cardboard box (NEEDS LOGIC)
     #put back background
     elif setting == "charamansion":
-        show Mansion bg
-        show character1 at left
-        show character2 at right
         n "Walking into the kitchen, [NAME1] and [NAME2] saw their chef's dish on the plate..."
        
     
