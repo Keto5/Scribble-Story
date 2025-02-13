@@ -2,9 +2,29 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 26: expected statement.
-    isPlayful = "false"
-              ^
+File "game/script.rpy", line 378: if statement expects a non-empty block.
+    if setting == "apt":
+                        ^
+
+File "game/script.rpy", line 380: Line is indented, but the preceding show statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    n "[NAME2] pulled the lid off his pot to reveal..."
+    ^
+
+File "game/script.rpy", line 385: expected statement.
+    elif setting == "cbox":
+                 ^
+
+File "game/script.rpy", line 388: Line is indented, but the preceding show statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    n"Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
+    ^
+
+File "game/script.rpy", line 391: expected statement.
+    elif setting == "charamansion":
+                 ^
+
+File "game/script.rpy", line 393: Line is indented, but the preceding show statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    n "Walking into the kitchen, [NAME1] and [NAME2] saw their chef's dish on the plate..."
+    ^
 
 Ren'Py Version: Ren'Py 8.3.4.24120703
-Wed Feb 12 10:47:49 2025
+Wed Feb 12 15:56:48 2025

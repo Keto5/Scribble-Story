@@ -324,9 +324,9 @@ label start:
     with hpunch
     c2 "Um..."
     c2 "Hey…{w} Before you do that..."
-    $ expression="bored"
+    $ expression="happy"
     show character1 at left
-    $ expression2="bored"
+    $ expression2="happy"
     show character2 at right
     #both characters happy
     c2 "You can draw us anything for dinner, right?"
@@ -342,7 +342,7 @@ label start:
     label narratorwarning:
     #shake transition again
     n "Hold on now.{w} May I speak with you, artist? {w}{i}Alone{i}?"
-    #hide MSpaint bg 
+    hide MSpaint bg 
     hide character1
     hide character2
     #switch background to blank, HIDE CHARACTERS 
@@ -365,8 +365,6 @@ label start:
 
     label contchoice2:
    
-    show character1 at left
-    show character2 at right
     n "Now, where were we?"
     #music starts again
     if isPlayful == "true":
@@ -376,17 +374,26 @@ label start:
     #if chose apartment (NEEDS LOGIC)
     #put back background  
     if setting == "apt":
+        show Apartment bg
+        show character1 at left
+        show character2 at right
         n "[NAME2] pulled the lid off his pot to reveal..."
     #choices
 
     #if chose mansion (NEEDS LOGIC)
     #put back background  
     elif setting == "cbox":
-        
+        show Cbox bg
+        show character1 at left
+        show character2 at right
+
         n"Pulling the surprise out from behind his back, [NAME1] revealed he had found…"
     #if chose wet cardboard box (NEEDS LOGIC)
     #put back background
     elif setting == "charamansion":
+        show Mansion bg
+        show character1 at left
+        show character2 at right
         n "Walking into the kitchen, [NAME1] and [NAME2] saw their chef's dish on the plate..."
        
     
