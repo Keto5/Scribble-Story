@@ -181,6 +181,9 @@ label start:
             #show character 2 bored right
             $ narratorScore+=1
             n "What a unique design! This will do nicely."
+            c2 "Hey."
+            c1 "Hi. I'm [NAME1]."
+            c2 "My name is [NAME2]. It's nice to meet you."
         "geometric":
             $ NAME2 = "Square"
             $ expression2="confused"
@@ -189,6 +192,9 @@ label start:
             #players wants
             $ playerScore+=1
             n "Oh... a little simple.{w} Are you sure you are an artist? I was expecting a bit more... {i}creativity...{/i}"
+            c2 "It's okay. Squares are cool."
+            c1 "Squares are kind of lame."
+            c2 "You're right, I was just trying to be nice."
         "confusing":
             $ NAME2 = "Abomination"
             $ expression2="happy"
@@ -197,8 +203,10 @@ label start:
             #show character 2 happy right
             $ characterScore+=1
             n "Uhm... Okay. This is not particularly my thing, but I guess someone out there will enjoy your character."
-
+            c1 "I like it! Very abstract!"
+            c2 "Thanks."
     label music:
+    n "Enough chatter! We have a story to create."    
     n "Let's add some music. Our story needs..."
 
     menu:
@@ -273,7 +281,8 @@ label start:
             jump mansion
 
     label apartment:
-    n "Yes! A humble apartment. They moved in not too long ago. Many of their belongings are still packed away."
+    n "Yes! A humble apartment. Sitcoms are a classic. The audience will love this."
+    n "They moved in not too long ago. Many of their belongings are still packed away."
     n "Today is an important day for our two friends. For [NAME2] has prepared a dinner to celebrate their brand new apartment!"
     n "As [NAME1] anxiously waits on the sofa, [NAME2] puts the finishing touches on the dish."
     c2 "”[NAME1]! It’s ready!”"
@@ -286,6 +295,7 @@ label start:
     label cardboardbox:
     n "...a wet cardboard box..."
     n "{i}A peculiar choice.{w} I am beginning to question your judgement, Artist.{/i}"
+    n "{i}I've never seen any popular stories set in a... cardboard box.{w} Unique is not always better, you know?{/i}"
     n "{i}But I can try to work with this.{/i}"
     n "In spite of what you may think, the box was quite cozy."
     n "When they moved in, [NAME1] taped up the outside of the box to prevent rain leaking through. [NAME2] bought a flashlight so they could see in the dark."
@@ -324,9 +334,9 @@ label start:
     with hpunch
     c2 "Um..."
     c2 "Hey…{w} Before you do that..."
-    $ expression="bored"
+    $ expression="happy"
     show character1 at left
-    $ expression2="bored"
+    $ expression2="happy"
     show character2 at right
     #both characters happy
     c2 "You can draw us anything for dinner, right?"
@@ -347,10 +357,20 @@ label start:
     hide character2
     #switch background to blank, HIDE CHARACTERS 
     n "That's better."
-    n "There comes a time in every artist's life where they must make choices. It is up to the individual to ensure they are making the {i}correct{/i} ones."      
-    n "I ask of you one thing.{w} Do not give in to your creations. You know what is best for them."
+    n "First off, I need to apologize.{w} I may not have been completely transparent with you."
+    n "While it is true you hold the power to create, there are other forces at play."
+    n "Our audience."
+    n "Without an audience, there is no reason for a story."
+    n "If this story goes well, we may even receive funding for a {i}sequel!{/i} "
+    n "I ask of you one thing.{w} Do not give in to your creations."
     n "Often times, what is best for them may not be what they desire. It may not be what {i}you{/i} desire."
-    n "You must think of your audience. Keep things reasonable and current."
+    n "Think of our audience. Keep things simple and reasonable."
+    n "We don't want to alienate any possible viewers."
+    # n "Often times, what is best for them may not be what they desire. It may not be what {i}you{/i} desire."
+    # n "There comes a time in every artist's life where they must make choices. It is up to the individual to ensure they are making the {i}correct{/i} ones."      
+    # n "I ask of you one thing.{w} Do not give in to your creations. You know what is best for them."
+    # n "Often times, what is best for them may not be what they desire. It may not be what {i}you{/i} desire."
+    # n "You must think of your audience. Keep things reasonable and current."
     # #if chose apartment
     if setting == "apt":       
         n "The people want a story they can relate to. A heartwarming tale of two friends celebrating their accomplishments with a grand meal!"
@@ -416,7 +436,7 @@ label start:
     $ expression2="bored"
     show character2 at right
     #both characters bored
-    n "An ordinary stew. Something perfectly average. Lukewarm and tasty, but nothing amazing."
+    n "An ordinary stew. Wonderful choice. Something perfectly average. Lukewarm and tasty, but nothing amazing."
     n "The two friends ate their average stew together and felt at peace. Their life may not be the most thrilling, but at least they were content."
     n "Everything worked out the way it was meant to."
 
@@ -430,11 +450,11 @@ label start:
     $ expression2="happy"
     show character2 at right
     #characters eat the pasta, some crazy shit happens idk maybe thats what makes them turn purple or maybe they can spin or something, go to next scene
-    n "An EXTRAORDINARY PASTA... OF COURSE! Because why not.{w} Who cares anymore.{w} CERTAINLY NOT ME!"
+    n "An EXTRAORDINARY PASTA... OF COURSE! Because why not.{w} Who cares.{w} CERTAINLY NOT ME!"
     n "This pasta is unlike any other.{w} It's {i}special pasta{/i}. {w}It even has sparkles."
     n "What makes this pasta so special? Why, I don't know.{w} I truly do not know.{w} Maybe we should ask the ARTIST! THEY PROBABLY KNOW!"
     n "They seem to know EVERYTHING!{w} AND THEY SEEM TO ONLY CONSIDER THE OPINIONS OF THEIR CREATIONS!"
-    n "Because WHY would they care about anyone else?{w} WHY would they listen to a LOWLY NARRATOR? The {i}DRIVING FORCE OF THE STORY!{/i}"
+    #n "Because WHY would they care about anyone else?{w} WHY would they listen to a LOWLY NARRATOR? The {i}DRIVING FORCE OF THE STORY!{/i}"
     n "Before we can consult the ALMIGHTY ARTIST, [NAME1], the brave fellow he is, decides to stuff the entire plate into his mouth."
     hide BowlPasta
     c2 "”Do you feel any different?”"
@@ -452,9 +472,12 @@ label start:
     #character 2 surprised, character 1 happy
     c1"”I guess I can do this now. Huh.”"
     n "STOP.{w} IMMEDIATELY."
-    #he moves around and shit
-    n "This makes no SENSE. THERE IS NO REASON FOR THIS."
     $ expression="shocked"
+    #he moves around and shit
+    n "This makes no SENSE. There is NO REASON for this."
+    n "It's nice to know you do not care for my opinion, Artist.{w} Who would listen to a LOWLY NARRATOR?{w} The {i}DRIVING FORCE OF THE STORY?{/i}"
+    n "We will {b}never{/b} receive funding at this rate."
+    c2 "{i}Funding? That's what this is about?{/i}"
     # show character1 at left
     #character 1 surprised
     #he keeps moving around
@@ -559,7 +582,7 @@ label start:
     $ expression2="sad"
     show character2 at right
     #characters sad
-    n "A new artist will replace you."
+    n "A new artist will replace you. An artist who {b}cares{/b} about the story. Not just it's characters."
     n "This story will be terminated immediately."
     stop music
     n "..."
@@ -645,11 +668,12 @@ label start:
     n "..."
     menu:
             "Pretty please?":
-                n "No.{w} I didn't want to do this but you have forced my hand."
+                n "No.{w} I didn't want to do this but you have forced my hand.{w} No one can be trusted with the power to draw. All thanks to you."
+    n "Nothing a little renovation can't fix."
     #demolition noises
     #text box moves to the top
-    n "Well, that settles that."
-    n "Where were we?"
+    # n "Well, that settles that."
+    n "Perfect. {w}Where were we?"
 
 
     n "After their dinner, [NAME1] and [NAME2] decided to…"
@@ -668,7 +692,6 @@ label start:
     n "..."
     n "Yeah…"
     n "..."
-    # n "They’ve got a one way ticket to the relaxation station baby…{w}Haha…"
     $ expression="angry"
     show character1 at left
     $ expression2="angry"
@@ -718,7 +741,7 @@ label start:
     show character2
     #hide characters
     #whisper noises
-    n "Unfortunately, the characters and I have decided that we DO NOT agree with your choices. You have {b}CONSISTENTLY{/b} put our story at risk, and we will tolerate it no longer."
+    n "Unfortunately, the characters and I DO NOT agree with your choices. You have {b}CONSISTENTLY{/b} put our story at risk, disregarding everyone's opinions in favor of your own strange desires. We will tolerate it no longer."
     c2 "You’re {i}weird{/i}, man."
     c1 "It’s a story to you. But we have to live in it."
     n "Your ability to control the story has been revoked."
