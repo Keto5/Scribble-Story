@@ -512,6 +512,8 @@ label start:
     $ expression2="shocked"
     show character2 at right
     #character 1 and 2 surprised 
+    #change this dialogue, kinda weak
+    c2 "IS THAT A ████████████ ??????"
     n "EUGH, THAT'S DISGUSTING! I CAN'T EVEN SHOW THAT!"
     n "Are you being serious? This benefits NO ONE.{w} Not a SINGLE SOUL.{w} NO ONE WANTS THIS."
     n "Ignoring my advice is one thing. But ignoring both the Narrator AND the Characters of your story is just CRUEL."
