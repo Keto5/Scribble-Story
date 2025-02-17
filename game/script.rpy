@@ -24,6 +24,7 @@ default expression = "happy"
 default expression2 = "happy"
 default setting = "apt"
 default isPlayful = "false"
+define gui.textbox_yalign = 1.0
 # The game starts here.
 layeredimage character1:
     yoffset(-150)
@@ -139,6 +140,8 @@ label start:
    
     menu drawchar1:
         "Make something strange":
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
             #characters want
             $ NAME1 = "Eyeball"
             $ characterScore+=1
@@ -149,6 +152,8 @@ label start:
             #character likes how they look
             c1 "Hello Creator. It is nice to meet you."
         "Make something simple":
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
             #narrator wants
             #show character 1 bored expression center
             $ NAME1 = "Stickman"
@@ -158,6 +163,8 @@ label start:
             n "Adorable! What a wonderful use of your powers. I applaud you, I do."
             c1 "Hi."
         "Make something geometric":
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
             # players want
             #show character 1 confused center
             $ NAME1 = "Circle"
@@ -174,6 +181,8 @@ label start:
     
     menu drawchar2:
         "human-like":
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
             $ NAME2 = "Squareman"
             $ expression2="bored"
             show character2 at right
@@ -185,6 +194,8 @@ label start:
             c1 "Hi. I'm [NAME1]."
             c2 "My name is [NAME2]. It's nice to meet you."
         "geometric":
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
             $ NAME2 = "Square"
             $ expression2="confused"
             show character2 at right
@@ -196,6 +207,8 @@ label start:
             c1 "Squares are kind of lame."
             c2 "You're right, I was just trying to be nice."
         "confusing":
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
             $ NAME2 = "Abomination"
             $ expression2="happy"
             show character2 at right
@@ -247,6 +260,8 @@ label start:
  
     menu:
         "a humble apartment":
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
             #increase narrator score
             #characters expression bored
             scene Apartment bg
@@ -258,6 +273,8 @@ label start:
             $ narratorScore+=1
             jump apartment
         "a wet cardboard box":
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
             scene Cbox bg
             #increase player score
             #characters expression sad
@@ -269,6 +286,8 @@ label start:
             $ playerScore+=1
             jump cardboardbox
         "a lavish mansion":
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
             #characters expression happy
             #increase characters score
             scene Mansion bg
@@ -318,7 +337,7 @@ label start:
     n "{i}I can try to make it work.{w} Just be careful for next time.{/i}"
     n "It was late evening, and the friends were waiting for their dinner. It did not typically take this long for their chef to prepare a dish, so they could only assume this one must be special."
     n "After another 30 minutes of waiting, the chef alerted [NAME1] that dinner was prepared."
-    "Personal Chef" "I apologize for the wait sir, we were testing out a new recipe. I do hope you enjoy."
+    "Personal Chef" "”I apologize for the wait sir, we were testing out a new recipe. I do hope you enjoy.”"
     n "[NAME1] and [NAME2] made their way into the kitchen, where their plates were already prepared. "
     n "On each plate was…"
     jump artistcharinteract
@@ -327,11 +346,15 @@ label start:
 
     label artistcharinteract:
     #music stops
+    play sound "scratch.mp3"
+   
     scene MSpaint bg
     stop music
     show character1 at left
     show character2 at right
     with hpunch
+    
+    $ renpy.pause(1.5)
     c2 "Um..."
     c2 "Hey…{w} Before you do that..."
     $ expression="happy"
@@ -413,15 +436,21 @@ label start:
     label dinnerchoice:
     menu: 
         "an ordinary stew":#increase narrator score
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
             $ narratorScore+=1
             show BowlStew
             jump stew
         "an {i}extraordinary{/i} pasta":
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
         #increase characters score
             show BowlPasta
             $ characterScore+=1
             jump pasta
         "something terrible":
+            play sound "scribble.mp3"
+            $ renpy.pause(1)
             show BowlWHAT
             $ playerScore+=1
             jump terrible
@@ -672,6 +701,9 @@ label start:
             "Pretty please?":
                 n "No.{w} I didn't want to do this but you have forced my hand.{w} No one can be trusted with the power to draw. All thanks to you."
     n "Nothing a little renovation can't fix."
+    play sound "construction.mp3"
+    $ renpy.pause(5)
+    define gui.textbox_yalign = 0.0
     #demolition noises
     #text box moves to the top
     # n "Well, that settles that."
@@ -709,7 +741,7 @@ label start:
     hide character1
     hide character2
     hide MSpaint bg
-    #different text box
+    #different text box?
     #they slide off screen
     #bg changes to nics dorm room, pointing at screen.
     "" ""
@@ -720,6 +752,7 @@ label start:
     c1 "..."
     c2 "Let’s go to the bar."
     #footsteps
+    
     #screaming
     c1 "...Do you think we can drink?{w} Do we have stomachs?"
     c1 "We should've thought about this before we walked all the way here."
@@ -752,7 +785,7 @@ label start:
     #show closing
     #show microsoft store
     #show downloading again
-    jump start
+    $renpy.quit()
 
     label ending4:
     #characters confused
