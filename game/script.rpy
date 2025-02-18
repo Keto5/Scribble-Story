@@ -16,6 +16,8 @@ image MSpaint bg = "MSPaint_Background.jpg"
 image Mansion bg = "LavishMansionBackground.jpg"
 image Apartment bg = "HumbleApartmentBackground.jpg"
 image Cbox bg = "WetCardboardBoxBackground.jpg"
+image Bar bg = "BarBackground.jpg"
+image Dorm bg = "DoorBackground.jpg"
 image BowlStew = "BowlStew.png"
 image BowlPasta = "BowlPasta.png"
 image BowlWHAT = "BowlWHAT.png"
@@ -40,6 +42,9 @@ layeredimage character1:
         "Circle_Bored.png"
     if NAME1 == "Circle" and expression == "shocked":
         "Circle_Shocked.png"
+    if NAME1 == "Circle" and expression == "3D":
+        "Circle_3D.png"
+
     if NAME1 == "Stickman" and expression == "happy":
         "Stickman_Happy.png"
     if NAME1 == "Stickman" and expression == "sad":
@@ -52,6 +57,8 @@ layeredimage character1:
         "Stickman_Bored.png"
     if NAME1 == "Stickman" and expression == "shocked":
         "Stickman_Shocked.png"
+    if NAME1 == "Stickman" and expression == "3D":
+        "Stickman_3D.png"
     
     if NAME1 == "Eyeball" and expression == "happy":
         "Eyeball_Happy.png"
@@ -65,6 +72,8 @@ layeredimage character1:
         "Eyeball_Bored.png"
     if NAME1 == "Eyeball" and expression == "shocked":
         "Eyeball_Shocked.png"
+    if NAME1 == "Eyeball" and expression == "3D":
+        "Eyeball_3D.png"
 layeredimage character2:
     yoffset(-100)
     if NAME2 == "Square" and expression2 == "happy":
@@ -79,6 +88,8 @@ layeredimage character2:
         "Square_Bored.png"
     if NAME2 == "Square" and expression2 == "shocked":
         "Square_Shocked.png"
+    if NAME2 == "Square" and expression2 == "3D":
+        "Square_3D.png"
 
     if NAME2 == "Squareman" and expression2 == "happy":
         "Squareman_Happy.png"
@@ -92,6 +103,8 @@ layeredimage character2:
         "Squareman_Bored.png"
     if NAME2 == "Squareman" and expression2 == "shocked":
         "Squareman_Shocked.png"
+    if NAME2 == "Squareman" and expression2 == "3D":
+        "Squareman_3D.png"
 
     if NAME2 == "Abomination" and expression2 == "happy":
         "Abomination_Happy.png"
@@ -105,6 +118,8 @@ layeredimage character2:
         "Abomination_Bored.png"
     if NAME2 == "Abomination" and expression2 == "shocked":
         "Abomination_Shocked.png"
+    if NAME2 == "Abomination" and expression2 == "3D":
+        "Abomination_3D.png"
 
 
 transform ts_tilt(xrot=0, yrot=0, ts_speed=0.3):
@@ -741,16 +756,26 @@ label start:
     hide character1
     hide character2
     hide MSpaint bg
+    scene Dorm bg
     #different text box?
     #they slide off screen
     #bg changes to nics dorm room, pointing at screen.
     "" ""
     #bg changes to floor of nics dorm room
-
+    
+    $ expression="3D"
+    show character1 at left
+    $ expression2="3D"
+    show character2 at right
     #characters 3D
     c2 "..."
     c1 "..."
     c2 "Let’s go to the bar."
+    scene Bar bg
+     $ expression="3D"
+    show character1 at left
+    $ expression2="3D"
+    show character2 at right
     #footsteps
     
     #screaming
